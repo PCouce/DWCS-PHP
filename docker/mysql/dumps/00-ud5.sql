@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: ud5-recuperaciones-mysql
--- Tiempo de generación: 09-04-2025 a las 08:53:10
+-- Tiempo de generación: 09-04-2025 a las 09:02:05
 -- Versión del servidor: 8.4.4
 -- Versión de PHP: 8.2.8
 
@@ -1444,7 +1444,7 @@ CREATE TABLE `proveedor` (
   `website` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `telefono` varchar(12) DEFAULT NULL,
-  `id_country` int DEFAULT NULL
+  `id_country` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
