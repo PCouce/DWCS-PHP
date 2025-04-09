@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: ud5-recuperaciones-mysql
--- Tiempo de generación: 09-04-2025 a las 09:02:05
+-- Tiempo de generación: 09-04-2025 a las 09:27:50
 -- Versión del servidor: 8.4.4
 -- Versión de PHP: 8.2.8
 
@@ -356,7 +356,14 @@ INSERT INTO `categoria` (`id_categoria`, `nombre_categoria`, `id_padre`) VALUES
 (13, 'Telefonía', NULL),
 (14, 'Android', 13),
 (15, 'iOS', 13),
-(51, 'Series X Prueba', 15);
+(53, 'Consolas', 4),
+(54, 'Accesorios', 4),
+(55, 'Mandos', 54),
+(56, 'Conectores y cables', 54),
+(57, 'Mandos', 54),
+(58, 'Accesorios', 5),
+(59, 'Mandos', 58),
+(60, 'Conectores y cables', 58);
 
 -- --------------------------------------------------------
 
@@ -2435,7 +2442,7 @@ ALTER TABLE `aux_rol_trabajador`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_categoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `log`
