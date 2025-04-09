@@ -6,6 +6,7 @@ Versión para final de curso que contiene cosas que se han ido añadiendo durant
 * Renombrado de tabla usuarios a trabajadores.
 * Proveedores sample añadido.
 * Contiene carpeta data/ con csv
+* Tabla producto tiene id_producto AI como PK y codigo como UNIQUE NOT NULL (clave candidata)
 
 # Docker: PHP & MySQL
 
