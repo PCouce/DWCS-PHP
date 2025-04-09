@@ -131,7 +131,7 @@ docker-compose down     # Detener y eliminar el ambiente de desarrollo.
 
 ### Web
 
-* http://localhost/
+* http://localhost:8080/
 
 ### Base de datos
 
