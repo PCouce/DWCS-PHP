@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: ud5-recuperaciones-mysql
--- Tiempo de generación: 09-04-2025 a las 09:27:50
--- Versión del servidor: 8.4.4
+-- Tiempo de generación: 05-05-2025 a las 14:24:17
+-- Versión del servidor: 8.4.5
 -- Versión de PHP: 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -1451,7 +1451,7 @@ CREATE TABLE `proveedor` (
   `website` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `telefono` varchar(12) DEFAULT NULL,
-  `id_country` int NOT NULL
+  `id_country` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -2399,7 +2399,8 @@ ALTER TABLE `producto`
 -- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  ADD PRIMARY KEY (`cif`);
+  ADD PRIMARY KEY (`cif`),
+  ADD KEY `proveedor_aux_countries_FK` (`id_country`);
 
 --
 -- Indices de la tabla `trabajadores`
@@ -2478,6 +2479,12 @@ ALTER TABLE `categoria`
 ALTER TABLE `producto`
   ADD CONSTRAINT `FK_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`),
   ADD CONSTRAINT `FK_proveedor` FOREIGN KEY (`proveedor`) REFERENCES `proveedor` (`cif`);
+
+--
+-- Filtros para la tabla `proveedor`
+--
+ALTER TABLE `proveedor`
+  ADD CONSTRAINT `proveedor_aux_countries_FK` FOREIGN KEY (`id_country`) REFERENCES `aux_countries` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `trabajadores`
