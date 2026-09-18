@@ -30,13 +30,15 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
         $this->view->showViews(array('templates/header.view.php', 'ejercicios1-strings.view.php', 'templates/footer.view.php'), $data);
     }
 
-    function addNumbers(int|float $a, int|float $b, int|float $c = 0, int|float|string $d = 0): int|false
+    public function ejercicio1operadores(): void
     {
-        return $a + $b + $c + $d;
-    }
+        $data = array(
+            'titulo' => 'Ejercicio Strings',
+            'breadcrumb' => ['Inicio', 'Ejercicio Strings'],
+            //'variableNueva' => 'Tengo valor'
+        );
 
-    function getFechaNacimiento(Persona $p) :Date {
-
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios1-strings.view.php', 'templates/footer.view.php'), $data);
     }
 
 }

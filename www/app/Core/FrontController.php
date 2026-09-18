@@ -29,6 +29,15 @@ class FrontController
             },
             'get'
         );
+        Route::add(
+            '/ejercicio1-operadores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosController();
+                $controlador->ejercicio1operadores();
+
+            },
+            'get'
+        );
 
         Route::add(
             '/demo-proveedores',
