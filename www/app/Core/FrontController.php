@@ -21,6 +21,14 @@ class FrontController
             'get'
         );
         Route::add(
+                    '/ejercicio1-strings',
+                    function () {
+                        $controlador = new \Com\Daw2\Controllers\EjerciciosController();
+                        $controlador->ejercicio1strings();
+                    },
+                    'get'
+                );
+        Route::add(
             '/demo-proveedores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\InicioController();
