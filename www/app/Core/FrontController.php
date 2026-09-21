@@ -69,6 +69,34 @@ class FrontController
         );
 
         Route::add(
+            '/ejercicio5-operadores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosController();
+                $controlador->ejercicio5operadores();
+
+            },
+            'get'
+        );
+        Route::add(
+            '/ejercicio6-operadores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosController();
+                $controlador->ejercicio6operadores();
+
+            },
+            'get'
+        );
+        Route::add(
+            '/ejercicio7-operadores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosController();
+                $controlador->ejercicio7operadores();
+
+            },
+            'get'
+        );
+
+        Route::add(
             '/demo-proveedores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\InicioController();

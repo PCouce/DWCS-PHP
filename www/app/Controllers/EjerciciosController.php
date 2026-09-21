@@ -11,7 +11,6 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
         $data = array(
             'titulo' => 'Ejercicio Strings',
             'breadcrumb' => ['Inicio', 'Ejercicio Strings'],
-            //'variableNueva' => 'Tengo valor'
         );
         $s = 'Carmiña';
         $final = '_user';
@@ -35,7 +34,6 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
         $data = array(
             'titulo' => 'Ejercicio Strings',
             'breadcrumb' => ['Inicio', 'Ejercicio 1 operadores'],
-            //'variableNueva' => 'Tengo valor'
         );
         $x = 10;
         $cuadrado = $x**2;
@@ -49,7 +47,6 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
         $data = array(
             'titulo' => 'Ejercicio Strings',
             'breadcrumb' => ['Inicio', 'Ejercicio 2 operadores'],
-            //'variableNueva' => 'Tengo valor'
         );
         $precioHora = 23.3;
         $numHorasTrabajadas = 160;
@@ -67,7 +64,6 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
         $data = array(
             'titulo' => 'Ejercicio Strings',
             'breadcrumb' => ['Inicio', 'Ejercicio 3 operadores'],
-            //'variableNueva' => 'Tengo valor'
         );
         $base = 15;
         $altura = 10;
@@ -87,7 +83,6 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
         $data = array(
             'titulo' => 'Ejercicio Strings',
             'breadcrumb' => ['Inicio', 'Ejercicio 4 operadores'],
-            //'variableNueva' => 'Tengo valor'
         );
         $nombre = 'Pepe';
         $edad = 32;
@@ -98,6 +93,60 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
         $data['notaMedia'] = $notaMedia;
 
         $this->view->showViews(array('templates/header.view.php', 'ejercicios4-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio5operadores()
+    {
+        $data = array(
+            'titulo' => 'Ejercicio Strings',
+            'breadcrumb' => ['Inicio', 'Ejercicio 5 operadores'],
+        );
+        $precioNocheBaja = 70;
+        $precioNocheAlta = 100;
+        $nochesBaja = 3;
+        $nochesAlta = 2;
+        $total = $precioNocheBaja * $nochesBaja + $precioNocheAlta * $nochesAlta;
+        $data['total'] = $total;
+        $data['nochesBaja'] = $nochesBaja;
+        $data['precioNocheBaja'] = $precioNocheBaja;
+        $data['precioNocheAlta'] = $precioNocheAlta;
+        $data['nochesAlta'] = $nochesAlta;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios5-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio6operadores()
+    {
+        $data = array(
+            'titulo' => 'Ejercicio Strings',
+            'breadcrumb' => ['Inicio', 'Ejercicio 6 operadores'],
+        );
+
+        $radio = 7;
+        $area = pi() * $radio**2;
+        $perimetro = 2 * pi() * $radio;
+
+        $data['perimetro'] = $perimetro;
+        $data['area'] = $area;
+        $data['radio'] = $radio;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios6-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio7operadores()
+    {
+        $data = array(
+            'titulo' => 'Ejercicio Strings',
+            'breadcrumb' => ['Inicio', 'Ejercicio 7 operadores'],
+        );
+
+        $kmh = 120;
+        $ms = $kmh / 3.6;
+
+        $data['kmh'] = $kmh;
+        $data['ms'] = $ms;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios7-operadores.view.php', 'templates/footer.view.php'), $data);
     }
 
 }
