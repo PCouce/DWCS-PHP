@@ -38,6 +38,35 @@ class FrontController
             },
             'get'
         );
+        Route::add(
+            '/ejercicio2-operadores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosController();
+                $controlador->ejercicio2operadores();
+
+            },
+            'get'
+        );
+
+        Route::add(
+            '/ejercicio3-operadores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosController();
+                $controlador->ejercicio3operadores();
+
+            },
+            'get'
+        );
+
+        Route::add(
+            '/ejercicio4-operadores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosController();
+                $controlador->ejercicio4operadores();
+
+            },
+            'get'
+        );
 
         Route::add(
             '/demo-proveedores',

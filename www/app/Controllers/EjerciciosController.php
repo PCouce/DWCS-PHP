@@ -34,7 +34,7 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
     {
         $data = array(
             'titulo' => 'Ejercicio Strings',
-            'breadcrumb' => ['Inicio', 'Ejercicio Strings'],
+            'breadcrumb' => ['Inicio', 'Ejercicio 1 operadores'],
             //'variableNueva' => 'Tengo valor'
         );
         $x = 10;
@@ -42,6 +42,62 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
         $data['x'] = $x;
         $data['cuadrado'] = $cuadrado;
         $this->view->showViews(array('templates/header.view.php', 'ejercicios1-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio2operadores(): void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio Strings',
+            'breadcrumb' => ['Inicio', 'Ejercicio 2 operadores'],
+            //'variableNueva' => 'Tengo valor'
+        );
+        $precioHora = 23.3;
+        $numHorasTrabajadas = 160;
+        $salarioBruto = $precioHora * $numHorasTrabajadas;
+
+        $data['salarioBruto'] = $salarioBruto;
+        $data['horasTrabajadas'] = $numHorasTrabajadas;
+        $data['precioHora'] = $precioHora;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios2-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio3operadores(): void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio Strings',
+            'breadcrumb' => ['Inicio', 'Ejercicio 3 operadores'],
+            //'variableNueva' => 'Tengo valor'
+        );
+        $base = 15;
+        $altura = 10;
+        $area = $base * $altura;
+        $perimetro = 2 * $base + 2 * $altura;
+
+        $data['perimetro'] = $perimetro;
+        $data['base'] = $base;
+        $data['altura'] = $altura;
+        $data['area'] = $area;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios3-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio4operadores(): void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio Strings',
+            'breadcrumb' => ['Inicio', 'Ejercicio 4 operadores'],
+            //'variableNueva' => 'Tengo valor'
+        );
+        $nombre = 'Pepe';
+        $edad = 32;
+        $notaMedia = 8.3;
+
+        $data['nombre'] = $nombre;
+        $data['edad'] = $edad;
+        $data['notaMedia'] = $notaMedia;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios4-operadores.view.php', 'templates/footer.view.php'), $data);
     }
 
 }
