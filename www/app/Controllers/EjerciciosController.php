@@ -104,15 +104,14 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController {
         $daysnightdown = 5;
         $daysnighthigh = 2;
 
-        $totalnightdown = $pricenightdown * $daysnightdown;
-        $totalnighthigh = $pricenighthigh * $daysnighthigh;
+        $total = $pricenightdown * $daysnightdown + $pricenighthigh * $daysnighthigh;
 
         $data['pricenightdown'] = $pricenightdown;
         $data['pricenighthigh'] = $pricenighthigh;
         $data['daysnightdown'] = $daysnightdown;
         $data['daysnighthigh'] = $daysnighthigh;
-        $data['totalnightdown'] = $totalnightdown;
-        $data['totalnighthigh'] = $totalnighthigh;
+        $data['total'] = $total;
+
 
         $this->view->showViews(array('templates/header.view.php', 'ejercicios5-operadores.view.php', 'templates/footer.view.php'), $data);
     }
@@ -126,8 +125,8 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController {
 
         $radio = 10;
 
-        $areacircle = M_PI * ($radio * $radio);
-        $perimetercircle = 2 * M_PI * $radio;
+        $areacircle = pi() * $radio**2;
+        $perimetercircle = 2 * pi() * $radio;
 
         $data['radio'] = $radio;
         $data['areacircle'] = $areacircle;
