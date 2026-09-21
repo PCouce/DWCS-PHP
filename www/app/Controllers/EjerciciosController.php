@@ -158,9 +158,15 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController {
             'breadcrumb' => ['Inicio', 'Ejercicio 8 Operadores']
         );
 
-        $number = 365;
+        $numero = 365;
+        $centenas = intval($numero/100, 10);
+        $decenas = intval(($numero%100)/10, 10);
+        $unidades = intval($numero%10, 10);
 
-        $data['number'] = $number;
+        $data['numero'] = $numero;
+        $data['centenas'] = $centenas;
+        $data['decenas'] = $decenas;
+        $data['unidades'] = $unidades;
 
         $this->view->showViews(array('templates/header.view.php', 'ejercicios8-operadores.view.php', 'templates/footer.view.php'), $data);
     }
@@ -171,6 +177,15 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController {
             'titulo' => 'Ejercicio 9 Operadores',
             'breadcrumb' => ['Inicio', 'Ejercicio 9 Operadores']
         );
+
+        $cadenaTexto = 'Hola Mundo!';
+
+        $numeroCaracteres = strlen($cadenaTexto);
+        $numeroPalabras = str_word_count($cadenaTexto);
+
+        $data['cadenaTexto'] = $cadenaTexto;
+        $data['numeroCaracteres'] = $numeroCaracteres;
+        $data['numeroPalabras'] = $numeroPalabras;
 
         $this->view->showViews(array('templates/header.view.php', 'ejercicios9-operadores.view.php', 'templates/footer.view.php'), $data);
     }

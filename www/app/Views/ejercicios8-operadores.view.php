@@ -1,5 +1,5 @@
 <div class="alert alert-success">
-    <p>8. El número <?php echo $number ?> está formado por <?php echo $number ?> centenas, <?php echo $number ?> decenas y <?php echo $units ?> unidades</p>
+    <p>El número <?php echo $numero ?> está formado por <?php echo $centenas ?> centenas, <?php echo $decenas ?> decenas y <?php echo $unidades ?> unidades</p>
 </div>
 
 
