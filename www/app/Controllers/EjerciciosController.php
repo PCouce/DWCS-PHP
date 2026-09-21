@@ -23,16 +23,156 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController {
     public function ejercicio1operadores() : void
     {
         $data = array(
-            'titulo' => 'Ejercicio Operadores',
-            'breadcrumb' => ['Inicio', 'Ejercicio Operadores']
+            'titulo' => 'Ejercicio 1 Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 1 Operadores']
         );
 
-        $number1 = 1;
-        $number2 = 2;
-
-        $result = $number1 ** $number2;
+        $x1 = 10;
+        $cuadrado = $x1**2;
+        $data['x1'] = $x1;
+        $data['cuadrado'] = $cuadrado;
 
         $this->view->showViews(array('templates/header.view.php', 'ejercicios1-operadores.view.php', 'templates/footer.view.php'), $data);
     }
 
+    public function ejercicio2operadores() : void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio 2 Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 2 Operadores']
+        );
+
+        $price = 10;
+        $hours = 8;
+        $cost = $price * $hours;
+
+        $data['price'] = $price;
+        $data['hours'] = $hours;
+        $data['cost'] = $cost;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios2-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio3operadores() : void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio 3 Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 3 Operadores']
+        );
+
+        $base = 10;
+        $height = 5;
+
+        $area = $base * $height;
+        $perimeter = $base * 2 + $height * 2;
+
+        $data['base'] = $base;
+        $data['height'] = $height;
+        $data['area'] = $area;
+        $data['perimeter'] = $perimeter;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios3-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio4operadores() : void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio 4 Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 4 Operadores']
+        );
+
+        $name = 'Juan';
+        $age = 25;
+        $note = 5;
+
+        $data['name'] = $name;
+        $data['age'] = $age;
+        $data['note'] = $note;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios4-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio5operadores() : void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio 5 Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 5 Operadores']
+        );
+
+        $pricenightdown = 20;
+        $pricenighthigh = 45;
+        $daysnightdown = 5;
+        $daysnighthigh = 2;
+
+        $totalnightdown = $pricenightdown * $daysnightdown;
+        $totalnighthigh = $pricenighthigh * $daysnighthigh;
+
+        $data['pricenightdown'] = $pricenightdown;
+        $data['pricenighthigh'] = $pricenighthigh;
+        $data['daysnightdown'] = $daysnightdown;
+        $data['daysnighthigh'] = $daysnighthigh;
+        $data['totalnightdown'] = $totalnightdown;
+        $data['totalnighthigh'] = $totalnighthigh;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios5-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio6operadores() : void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio 6 Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 6 Operadores']
+        );
+
+        $radio = 10;
+
+        $areacircle = M_PI * ($radio * $radio);
+        $perimetercircle = 2 * M_PI * $radio;
+
+        $data['radio'] = $radio;
+        $data['areacircle'] = $areacircle;
+        $data['perimetercircle'] = $perimetercircle;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios6-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio7operadores() : void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio 7 Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 7 Operadores']
+        );
+
+        $km = 50;
+        $ms = $km / 3.6;
+
+        $data['km'] = $km;
+        $data['ms'] = $ms;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios7-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio8operadores() : void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio 8 Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 8 Operadores']
+        );
+
+        $number = 365;
+
+        $data['number'] = $number;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios8-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio9operadores() : void
+    {
+        $data = array(
+            'titulo' => 'Ejercicio 9 Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 9 Operadores']
+        );
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios9-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
 }

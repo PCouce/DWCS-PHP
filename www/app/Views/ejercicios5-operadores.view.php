@@ -1,0 +1,3 @@
+<div class="alert alert-success">
+    <p>5. El precio del día en temporada alta es <?php echo $pricenightdown ?>€, se han alojado <?php echo $daysnightdown ?> dias por lo que se pagarán <?php echo $totalnightdown ?>€ <br> El precio del día en temporada alta es <?php echo $pricenighthigh ?>€, se han alojado <?php echo $daysnighthigh ?> dias por lo que se pagarán <?php echo $totalnighthigh ?>€</p>
+</div>
