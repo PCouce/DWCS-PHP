@@ -37,8 +37,11 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
             'breadcrumb' => ['Inicio', 'Ejercicio Strings'],
             //'variableNueva' => 'Tengo valor'
         );
-
-        $this->view->showViews(array('templates/header.view.php', 'ejercicios1-strings.view.php', 'templates/footer.view.php'), $data);
+        $x = 10;
+        $cuadrado = $x**2;
+        $data['x'] = $x;
+        $data['cuadrado'] = $cuadrado;
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios1-operadores.view.php', 'templates/footer.view.php'), $data);
     }
 
 }
