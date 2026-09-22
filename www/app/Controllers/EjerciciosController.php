@@ -9,8 +9,8 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
     public function ejercicio1strings(): void
     {
         $data = array(
-            'titulo' => 'Ejercicio Strings',
-            'breadcrumb' => ['Inicio', 'Ejercicio Strings'],
+            'titulo' => 'Ejercicios Strings',
+            'breadcrumb' => ['Inicio', 'Ejercicios Operadores'],
         );
         $s = 'Carmiña';
         $final = '_user';
@@ -32,7 +32,7 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
     public function ejercicio1operadores(): void
     {
         $data = array(
-            'titulo' => 'Ejercicio Strings',
+            'titulo' => 'Ejercicios Operadores',
             'breadcrumb' => ['Inicio', 'Ejercicio 1 operadores'],
         );
         $x = 10;
@@ -45,7 +45,7 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
     public function ejercicio2operadores(): void
     {
         $data = array(
-            'titulo' => 'Ejercicio Strings',
+            'titulo' => 'Ejercicios Operadores',
             'breadcrumb' => ['Inicio', 'Ejercicio 2 operadores'],
         );
         $precioHora = 23.3;
@@ -62,7 +62,7 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
     public function ejercicio3operadores(): void
     {
         $data = array(
-            'titulo' => 'Ejercicio Strings',
+            'titulo' => 'Ejercicios Operadores',
             'breadcrumb' => ['Inicio', 'Ejercicio 3 operadores'],
         );
         $base = 15;
@@ -81,7 +81,7 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
     public function ejercicio4operadores(): void
     {
         $data = array(
-            'titulo' => 'Ejercicio Strings',
+            'titulo' => 'Ejercicios Operadores',
             'breadcrumb' => ['Inicio', 'Ejercicio 4 operadores'],
         );
         $nombre = 'Pepe';
@@ -98,7 +98,7 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
     public function ejercicio5operadores()
     {
         $data = array(
-            'titulo' => 'Ejercicio Strings',
+            'titulo' => 'Ejercicios Operadores',
             'breadcrumb' => ['Inicio', 'Ejercicio 5 operadores'],
         );
         $precioNocheBaja = 70;
@@ -118,7 +118,7 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
     public function ejercicio6operadores()
     {
         $data = array(
-            'titulo' => 'Ejercicio Strings',
+            'titulo' => 'Ejercicios Operadores',
             'breadcrumb' => ['Inicio', 'Ejercicio 6 operadores'],
         );
 
@@ -136,7 +136,7 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
     public function ejercicio7operadores()
     {
         $data = array(
-            'titulo' => 'Ejercicio Strings',
+            'titulo' => 'Ejercicios Operadores',
             'breadcrumb' => ['Inicio', 'Ejercicio 7 operadores'],
         );
 
@@ -147,6 +147,46 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController
         $data['ms'] = $ms;
 
         $this->view->showViews(array('templates/header.view.php', 'ejercicios7-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function ejercicio8operadores()
+    {
+        $data = array(
+            'titulo' => 'Ejercicios Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 8 operadores'],
+        );
+
+        $numeroOriginal = 9818181887;
+
+        $numero = (string)($numeroOriginal % 1000);
+        $centenas = $numero[0];
+        $decenas = $numero[1];
+        $unidades = $numero[2];
+
+        $data['centenas'] = $centenas;
+        $data['decenas'] = $decenas;
+        $data['unidades'] = $unidades;
+        $data['numero'] = $numeroOriginal;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios8-operadores.view.php', 'templates/footer.view.php'), $data);
+    }
+    public function ejercicio9operadores()
+    {
+        $data = array(
+            'titulo' => 'Ejercicios Operadores',
+            'breadcrumb' => ['Inicio', 'Ejercicio 9 operadores'],
+        );
+
+        $stringOriginal = "Un trabajo liderado por la Universidad Complutense de Madrid muestra que los modelos celulares 3D derivados de tejido histológicamente libre de tumor son capaces de manifestar capacidades de crecimiento, autorrenovación y migración que no son visibles mediante el análisis convencional del tejido. Los autores afirman que esta técnica podría ser un complemento diagnóstico.";
+
+        $numCaracteres = mb_strlen($stringOriginal);
+        $numPalabras = str_word_count($stringOriginal);
+
+        $data['stringOriginal'] = $stringOriginal;
+        $data['numPalabras'] = $numPalabras;
+        $data['numCaracteres'] = $numCaracteres;
+
+        $this->view->showViews(array('templates/header.view.php', 'ejercicios9-operadores.view.php', 'templates/footer.view.php'), $data);
     }
 
 }
