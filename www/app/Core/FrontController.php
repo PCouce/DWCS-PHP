@@ -101,6 +101,14 @@ class FrontController
             'get'
         );
         Route::add(
+            '/ejercicio1-decision',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
+                $controlador->ejercicio1Decision();
+            },
+            'get'
+        );
+        Route::add(
             '/demo-proveedores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\InicioController();

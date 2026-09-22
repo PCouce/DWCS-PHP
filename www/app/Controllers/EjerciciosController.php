@@ -180,7 +180,7 @@ class EjerciciosController extends \Com\Daw2\Core\BaseController {
 
         $cadenaTexto = 'Hola Mundo!';
 
-        $numeroCaracteres = strlen($cadenaTexto);
+        $numeroCaracteres = mb_strlen($cadenaTexto);
         $numeroPalabras = str_word_count($cadenaTexto);
 
         $data['cadenaTexto'] = $cadenaTexto;
