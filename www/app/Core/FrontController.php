@@ -101,10 +101,58 @@ class FrontController
             'get'
         );
         Route::add(
-            '/ejercicio1-decision',
+            '/ejercicio1-decisiones',
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
-                $controlador->ejercicio1Decision();
+                $controlador->ejercicio1Decisiones();
+            },
+            'get'
+        );
+        Route::add(
+            '/ejercicio2-decisiones',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
+                $controlador->ejercicio2Decisiones();
+            },
+            'get'
+        );
+        Route::add(
+            '/ejercicio3-decisiones',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
+                $controlador->ejercicio3Decisiones();
+            },
+            'get'
+        );
+        Route::add(
+            '/ejercicio4-decisiones',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
+                $controlador->ejercicio4Decisiones();
+            },
+            'get'
+        );
+        Route::add(
+            '/ejercicio5-decisiones',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
+                $controlador->ejercicio5Decisiones();
+            },
+            'get'
+        );
+        Route::add(
+            '/ejercicio6-decisiones',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
+                $controlador->ejercicio6Decisiones();
+            },
+            'get'
+        );
+        Route::add(
+            '/ejercicio7-decisiones',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
+                $controlador->ejercicio7Decisiones();
             },
             'get'
         );
