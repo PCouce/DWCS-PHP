@@ -52,7 +52,7 @@
                     ?>
                 </ul>
             </li>
-            <li class="nav-item <?php echo (in_array($_SERVER['REQUEST_URI'], [$_ENV['host.folder'] . 'ejercicios1-operadores'])) ? 'menu-open' : '';?>">
+            <li class="nav-item <?php echo (in_array($_SERVER['REQUEST_URI'], [$_ENV['host.folder'] . 'ejercicios1-decisiones'])) ? 'menu-open' : '';?>">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fa fa-book"></i>
                     <p>
