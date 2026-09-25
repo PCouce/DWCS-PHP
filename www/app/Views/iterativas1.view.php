@@ -3,6 +3,13 @@
 declare(strict_types=1);
 ?>
 <div class="row">
+    <?php
+    if (isset($mayor) && isset($menor)):
+    ?>
+    <div class="col-12 alert alert-success">
+        <p>Mayor: <?php echo $mayor ?>, Menor: <?php echo $menor ?></p>
+    </div>
+    <?php endif; ?>
     <div class="col-12">
         <div class="card shadow mb-4">
             <form method="post" action="">

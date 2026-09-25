@@ -140,8 +140,7 @@ class FrontController
             '/iterativas1',
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->ejercicio1();
-
+                $controlador->doEjercicio1();
             },
             'post'
         );
