@@ -24,7 +24,6 @@ class IterativasController extends BaseController
             'titulo' => 'Ejercicios iterativas',
             'breadcrumb' => ['Inicio', 'Ordenar'],
         );
-
         $numeros = $_POST['numeros'];
         $check = $this->checkEjercicio1($numeros);
         if ($check === true) {
@@ -33,7 +32,9 @@ class IterativasController extends BaseController
             $data['menor'] = min($arrayNumero);
             $this->view->showViews(array('templates/header.view.php', 'iterativas1.view.php', 'templates/footer.view.php'), $data);
         } else {
-            echo 'Sin implementar'; die;
+            $data['error'] = $check;
+            $data['numeros'] = filter_var($numeros, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $this->view->showViews(array('templates/header.view.php', 'iterativas1.view.php', 'templates/footer.view.php'), $data);
         }
     }
 

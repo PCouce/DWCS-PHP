@@ -24,7 +24,8 @@ declare(strict_types=1);
                         <div class="col-12">
                             <div class="mb-3">
                                 <label for="numeros">Números a ordenar:</label>
-                                <input type="text" class="form-control" name="numeros" id="numeros" value="" />
+                                <input type="text" class="form-control" name="numeros" id="numeros" value="<?php echo $numeros ?? '' ?>" />
+                                <p class="text-danger small"><?php echo $error ?? ''; ?></p>
                             </div>
                         </div>
                     </div>
