@@ -102,6 +102,20 @@ class EjerciciosDecisionController extends BaseController
 
         $this->view->showViews(array('templates/header.view.php', 'ejercicios4-decisiones.view.php', 'templates/footer.view.php'), $data);
     }
+
+    /**
+     * Devuelve cuanto dinero se descuenta a un sueldo bruto
+     * @param float $sueldoBruto Sueldo bruto
+     * @return float Descuento a aplicar
+     */
+    private function descuentoSueldoBruto(float $sueldoBruto) : float
+    {
+        $descuentoPor10pc = $sueldoBruto * 10 / 100;
+        $descuentoPor5pcAdicional = ($sueldoBruto > 1000) ? ($sueldoBruto - 1000) * 5 / 100 : 0;
+        $descuentoPor3pcAdicional = ($sueldoBruto > 2000) ? ($sueldoBruto - 2000) * 3 / 100 : 0;
+
+        return $descuentoPor10pc + $descuentoPor5pcAdicional + $descuentoPor3pcAdicional;
+    }
     public function ejercicio5Decisiones() : void
     {
         $data = array(
@@ -109,16 +123,12 @@ class EjerciciosDecisionController extends BaseController
             'breadcrumb' => ['Inicio', 'Ejercicio 5 Decisiones']
         );
 
-        $salario = 1500;
-
-        $descuento = match (true) {
-            $salario <= 1000 => [$salario * 0.10, "info"],
-            $salario > 1000 && $salario <= 2000 => [$salario * 0.10 + $salario * 0.05, "info"],
-            $salario > 2000 =>[$salario * 0.10 + $salario * 0.05 + $salario * 0.03, "success"],
-        };
-
-        $data['salario'] = $salario;
+        $sueldoBruto = 2100;
+        $descuento = $this->descuentoSueldoBruto($sueldoBruto);
+        $neto = $sueldoBruto + $descuento;
+        $data['sueldoBruto'] = $sueldoBruto;
         $data['descuento'] = $descuento;
+        $data['neto'] = $neto;
 
         $this->view->showViews(array('templates/header.view.php', 'ejercicios5-decisiones.view.php', 'templates/footer.view.php'), $data);
     }
