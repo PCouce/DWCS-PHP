@@ -21,18 +21,20 @@ class FrontController
             'get'
         );
         Route::add(
-                    '/ejercicio1-strings',
-                    function () {
-                        $controlador = new \Com\Daw2\Controllers\EjerciciosController();
-                        $controlador->ejercicio1strings();
-                    },
-                    'get'
-                );
+            '/ejercicio1-strings',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjerciciosController();
+                $controlador->ejercicio1Strings();
+
+            },
+            'get'
+        );
         Route::add(
             '/ejercicio1-operadores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio1operadores();
+
             },
             'get'
         );
@@ -41,30 +43,37 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio2operadores();
+
             },
             'get'
         );
+
         Route::add(
             '/ejercicio3-operadores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio3operadores();
+
             },
             'get'
         );
+
         Route::add(
             '/ejercicio4-operadores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio4operadores();
+
             },
             'get'
         );
+
         Route::add(
             '/ejercicio5-operadores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio5operadores();
+
             },
             'get'
         );
@@ -73,6 +82,7 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio6operadores();
+
             },
             'get'
         );
@@ -81,89 +91,60 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio7operadores();
+
             },
             'get'
         );
+
         Route::add(
             '/ejercicio8-operadores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio8operadores();
+
             },
             'get'
         );
+
         Route::add(
             '/ejercicio9-operadores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio9operadores();
+
             },
             'get'
         );
+
         Route::add(
-            '/ejercicio1-decisiones',
+            '/ejercicio5-decision',
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
-                $controlador->ejercicio1Decisiones();
+                $controlador->ejercicio5Decision();
+
             },
             'get'
         );
-        Route::add(
-            '/ejercicio2-decisiones',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
-                $controlador->ejercicio2Decisiones();
-            },
-            'get'
-        );
-        Route::add(
-            '/ejercicio3-decisiones',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
-                $controlador->ejercicio3Decisiones();
-            },
-            'get'
-        );
-        Route::add(
-            '/ejercicio4-decisiones',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
-                $controlador->ejercicio4Decisiones();
-            },
-            'get'
-        );
-        Route::add(
-            '/ejercicio5-decisiones',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
-                $controlador->ejercicio5Decisiones();
-            },
-            'get'
-        );
-        Route::add(
-            '/ejercicio6-decisiones',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
-                $controlador->ejercicio6Decisiones();
-            },
-            'get'
-        );
-        Route::add(
-            '/ejercicio7-decisiones',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
-                $controlador->ejercicio7Decisiones();
-            },
-            'get'
-        );
+
         Route::add(
             '/iterativas1',
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->iterativas1();
+                $controlador->ejercicio1();
+
             },
             'get'
         );
+
+        Route::add(
+            '/iterativas1',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->doEjercicio1();
+            },
+            'post'
+        );
+
         Route::add(
             '/demo-proveedores',
             function () {
