@@ -157,6 +157,14 @@ class FrontController
             'get'
         );
         Route::add(
+            '/iterativas1',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->iterativas1();
+            },
+            'get'
+        );
+        Route::add(
             '/demo-proveedores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\InicioController();
