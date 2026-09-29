@@ -52,4 +52,61 @@ class IterativasController extends BaseController
         }
         return true;
     }
+
+    public function ejercicio2(string $numeros = '', array $errores = []): void
+    {
+        $data = array(
+            'titulo' => 'Ejercicios iterativas',
+            'breadcrumb' => ['Inicio', 'Ordenar matriz'],
+        );
+        $data['errores'] = $errores;
+        $data['numeros'] = $numeros;
+        $this->view->showViews(array('templates/header.view.php', 'iterativas2.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function doEjercicio2(): void
+    {
+        $errores = $this->checkEjercicio2($_POST);
+        if ($errores === []) {
+            //Hacemos el trabajo
+            $aux = explode('|', $_POST['numeros']);
+
+            $numeros = [];
+            foreach ($aux as $ns) {
+                $numeros = array_merge($numeros,  explode(',', $ns));
+            }
+            sort($numeros);
+        } else {
+            $this->ejercicio2(filter_var($_POST['numeros'], FILTER_SANITIZE_FULL_SPECIAL_CHARS), $errores);
+        }
+    }
+
+    private function checkEjercicio2(array $data): array
+    {
+        $errores = [];
+        if (empty($data['numeros'])) {
+            $errores['numeros'] = 'Campo obligatorio';
+        } else {
+            $aux = explode('|', $data['numeros']);
+            //Primero comprobamos que todas las filas tengan el mismo número de elementos
+            foreach ($aux as $array) {
+                if (!isset($numColumnas)) {
+                    $numColumnas = count(explode(',', $array));
+                } else if ($numColumnas !== count(explode(',', $array))) {
+                    $errores['numeros'] = 'Las filas deben tener el mismo número de columnas.';
+                }
+            }
+            $numeros = [];
+            //Aplanamos y comprobamos que son números
+            foreach ($aux as $ns) {
+                $numeros = array_merge($numeros,  explode(',', $ns));
+            }
+            foreach ($numeros as $numero) {
+                if (!is_numeric($numero)) {
+                    $errores['numeros'] = "El valor '$numero' no es un número";
+                }
+            }
+        }
+        return $errores;
+    }
 }
