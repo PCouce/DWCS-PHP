@@ -53,7 +53,7 @@ class IterativasController extends BaseController
         return true;
     }
 
-    public function ejercicio2(string $numeros = '', array $errores = []): void
+    public function ejercicio2(string $numeros = '', array $errores = [], array $resultado = []): void
     {
         $data = array(
             'titulo' => 'Ejercicios iterativas',
@@ -61,24 +61,47 @@ class IterativasController extends BaseController
         );
         $data['errores'] = $errores;
         $data['numeros'] = $numeros;
+        $data['resultado'] = $resultado;
         $this->view->showViews(array('templates/header.view.php', 'iterativas2.view.php', 'templates/footer.view.php'), $data);
     }
 
     public function doEjercicio2(): void
     {
         $errores = $this->checkEjercicio2($_POST);
+        $inputNumeros = filter_var($_POST['numeros'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if ($errores === []) {
             //Hacemos el trabajo
             $aux = explode('|', $_POST['numeros']);
 
             $numeros = [];
             foreach ($aux as $ns) {
-                $numeros = array_merge($numeros,  explode(',', $ns));
+                $arrayNumeros = explode(',', $ns);
+                if(!isset($numColumnas)) {
+                    $numColumnas = count($arrayNumeros);
+                }
+                $numeros = array_merge($numeros, $arrayNumeros);
             }
             sort($numeros);
+            $matriz = $this->montarMatriz($numeros, $numColumnas);
+            $this->ejercicio2($inputNumeros, [], $matriz);
+
         } else {
-            $this->ejercicio2(filter_var($_POST['numeros'], FILTER_SANITIZE_FULL_SPECIAL_CHARS), $errores);
+            $this->ejercicio2($inputNumeros, $errores);
         }
+    }
+
+    private function montarMatriz(array $plano, int $numColumnas): array
+    {
+        $matriz = [];
+        $aux = [];
+        foreach($plano as $numero) {
+            $aux[] = $numero;
+            if (count($aux) === $numColumnas) {
+                $matriz[] = $aux;
+                $aux = [];
+            }
+        }
+        return $matriz;
     }
 
     private function checkEjercicio2(array $data): array

@@ -4,10 +4,22 @@ declare(strict_types=1);
 ?>
 <div class="row">
     <?php
-    if (false):
+    if (isset($resultado) && $resultado !== []):
     ?>
     <div class="col-12 alert alert-success">
-        <p>Mayor: <?php echo $mayor ?>, Menor: <?php echo $menor ?></p>
+        <table class="table table-bordered">
+            <?php
+            foreach ($resultado as $row):
+            ?>
+            <tr>
+                <?php
+                foreach ($row as $column):
+                ?>
+                <td><?= $column ?></td>
+                <?php endforeach; ?>
+            </tr>
+            <?php endforeach; ?>
+        </table>
     </div>
     <?php endif; ?>
     <div class="col-12">
