@@ -155,48 +155,73 @@ class IterativasController extends BaseController
         return true;
     }
 
-    public function ejercicio4(): void
+    public function ejercicio4(array $errores = [], array $resultado = []): void
     {
         $data = array(
             'titulo' => 'Ejercicios iterativas',
             'breadcrumb' => ['Inicio', 'Ordenar'],
         );
+
+        $data['errores'] = $errores;
+        $data['resultado'] = $resultado;
 
         $this->view->showViews(array('templates/header.view.php', 'iterativas4.view.php', 'templates/footer.view.php'), $data);
     }
 
     public function doEjercicio4(): void
     {
+        $texto = $_POST['texto'];
+
+        $errores = [];
+        if ($texto === '') {
+            $errores['texto'] = 'Debe ingresar un texto';
+        }
+        $texto = strtolower($texto);
+        $texto = preg_replace('/\P{L}/', '', $texto);
+        preg_match_all('/\p{L}/', $texto, $coincidencias);
+
+        $resultado = [];
+        foreach ($coincidencias[0] as $coincidencia) {
+            if (!isset($resultado[$coincidencia])) {
+                $resultado[$coincidencia] = substr_count($texto, $coincidencia);
+            }
+        }
+        arsort($resultado);
+        $this->ejercicio4($errores, $resultado);
+    }
+
+    public function ejercicio5(array $errores = [], array $resultado = []): void
+    {
         $data = array(
             'titulo' => 'Ejercicios iterativas',
             'breadcrumb' => ['Inicio', 'Ordenar'],
         );
-        $numeros = $_POST['numeros'];
-        $check = $this->checkEjercicio4($numeros);
-        if ($check === true) {
-            $arrayNumero = explode(',', $numeros);
-            sort($arrayNumero);
-            $data['numeros'] = $arrayNumero;
-            $this->view->showViews(array('templates/header.view.php', 'iterativas4.view.php', 'templates/footer.view.php'), $data);
-        } else {
-            $data['error'] = $check;
-            $data['numeros'] = filter_var($numeros, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $this->view->showViews(array('templates/header.view.php', 'iterativas4.view.php', 'templates/footer.view.php'), $data);
-        }
+
+        $data['errores'] = $errores;
+        $data['resultado'] = $resultado;
+
+        $this->view->showViews(array('templates/header.view.php', 'iterativas4.view.php', 'templates/footer.view.php'), $data);
     }
 
-    private function checkEjercicio4(string $numeros): string | true
+    public function doEjercicio5(): void
     {
-        if ($numeros === '') {
-            return 'Debe ingresar numeros';
-        }
-        $arrayNumero = explode(',', $numeros);
+        $texto = $_POST['texto'];
 
-        foreach ($arrayNumero as $numero) {
-            if (!is_numeric($numero)) {
-                return 'Debe ingresar numeros separados por comas';
+        $errores = [];
+        if ($texto === '') {
+            $errores['texto'] = 'Debe ingresar un texto';
+        }
+        $texto = strtolower($texto);
+        $texto = preg_replace('/\P{L}/', '', $texto);
+        preg_match_all('/\p{L}/', $texto, $coincidencias);
+
+        $resultado = [];
+        foreach ($coincidencias[0] as $coincidencia) {
+            if (!isset($resultado[$coincidencia])) {
+                $resultado[$coincidencia] = substr_count($texto, $coincidencia);
             }
         }
-        return true;
+        arsort($resultado);
+        $this->ejercicio5($errores, $resultado);
     }
 }

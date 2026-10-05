@@ -201,6 +201,24 @@ class FrontController
             },
             'post'
         );
+        Route::add(
+            '/iterativas5',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->ejercicio5();
+
+            },
+            'get'
+        );
+
+        Route::add(
+            '/iterativas5',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->doEjercicio5();
+            },
+            'post'
+        );
 
         Route::add(
             '/demo-proveedores',
