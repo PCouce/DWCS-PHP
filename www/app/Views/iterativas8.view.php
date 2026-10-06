@@ -46,6 +46,13 @@ declare(strict_types=1);
                 ?>
                 </tbody>
             </table>
+            <?php
+            if (isset($alumnos)) {
+            ?>
+            <p>Aprobaron todo: <?php echo $alumnos['aprobadoTodo']?></p>
+            <p>Suspendieron al menos 1: <?php echo $alumnos['suspendidoUna']?></p>
+            <p>No promocionan: <?php echo $alumnos['noPromociona']?></p>
+            <?php } ?>
         </div>
         <?php
     }
