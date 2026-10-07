@@ -5,6 +5,11 @@ declare(strict_types=1);
 <div class="row">
     <div class="col-12">
         <div class="card shadow mb-4">
+            <?php if (isset($numeros)): ?>
+            <div class="alert alert-success">
+                <p>El cuadrado del número <?php echo $numero ?> es <?php echo $cuadrado ?></p>
+            </div>
+            <?php endif; ?>
             <form method="post" action="">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">El cuadrado de un número:</h6>
