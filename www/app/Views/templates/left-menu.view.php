@@ -39,10 +39,58 @@
               </a>
               <ul class="nav nav-treeview">
                   <?php
-                  for ($i = 1 ; $i < 11; $i++):
+                  for ($i = 1 ; $i < 10; $i++):
                       ?>
                       <li class="nav-item">
                           <a href="<?php echo $_ENV['host.folder'] ?>operadores<?php echo $i ?>" class="nav-link <?php echo $_SERVER['REQUEST_URI'] === $_ENV['host.folder'] . "operadores{$i}" ? 'active' : ''; ?>">
+                              <i class="fas fa-code nav-icon"></i>
+                              <p>Ej. <?php echo $i ?></p>
+                          </a>
+                      </li>
+                  <?php
+                  endfor;
+                  ?>
+              </ul>
+          </li>
+            <!-- Menu lateral ejercicios decisiones -->
+          <li class="nav-item <?php echo (in_array($_SERVER['REQUEST_URI'], [$_ENV['host.folder'] . 'decisiones'])) ? 'menu-open' : '';?>">
+              <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                      Decisiones
+                      <i class="right fas fa-angle-left"></i>
+                  </p>
+              </a>
+              <ul class="nav nav-treeview">
+                  <?php
+                  for ($i = 1 ; $i < 11; $i++):
+                      ?>
+                      <li class="nav-item">
+                          <a href="<?php echo $_ENV['host.folder'] ?>decisiones<?php echo $i ?>" class="nav-link <?php echo $_SERVER['REQUEST_URI'] === $_ENV['host.folder'] . "decisiones{$i}" ? 'active' : ''; ?>">
+                              <i class="fas fa-code nav-icon"></i>
+                              <p>Ej. <?php echo $i ?></p>
+                          </a>
+                      </li>
+                  <?php
+                  endfor;
+                  ?>
+              </ul>
+          </li>
+            <!-- Menu lateral ejercicios decisiones -->
+          <li class="nav-item <?php echo (in_array($_SERVER['REQUEST_URI'], [$_ENV['host.folder'] . 'iterativas'])) ? 'menu-open' : '';?>">
+              <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                      Iterativas
+                      <i class="right fas fa-angle-left"></i>
+                  </p>
+              </a>
+              <ul class="nav nav-treeview">
+                  <?php
+                  for ($i = 1 ; $i < 9; $i++):
+                      ?>
+                      <li class="nav-item">
+                          <a href="<?php echo $_ENV['host.folder'] ?>iterativas<?php echo $i ?>" class="nav-link <?php echo $_SERVER['REQUEST_URI'] === $_ENV['host.folder'] . "iterativas{$i}" ? 'active' : ''; ?>">
                               <i class="fas fa-code nav-icon"></i>
                               <p>Ej. <?php echo $i ?></p>
                           </a>
