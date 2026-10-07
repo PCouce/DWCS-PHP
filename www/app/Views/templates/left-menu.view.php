@@ -28,6 +28,30 @@
               </li>              
             </ul>
           </li>
+            <!-- Menu lateral ejercicios operadores -->
+          <li class="nav-item <?php echo (in_array($_SERVER['REQUEST_URI'], [$_ENV['host.folder'] . 'operadores'])) ? 'menu-open' : '';?>">
+              <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                      Operadores
+                      <i class="right fas fa-angle-left"></i>
+                  </p>
+              </a>
+              <ul class="nav nav-treeview">
+                  <?php
+                  for ($i = 1 ; $i < 11; $i++):
+                      ?>
+                      <li class="nav-item">
+                          <a href="<?php echo $_ENV['host.folder'] ?>operadores<?php echo $i ?>" class="nav-link <?php echo $_SERVER['REQUEST_URI'] === $_ENV['host.folder'] . "operadores{$i}" ? 'active' : ''; ?>">
+                              <i class="fas fa-code nav-icon"></i>
+                              <p>Ej. <?php echo $i ?></p>
+                          </a>
+                      </li>
+                  <?php
+                  endfor;
+                  ?>
+              </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
