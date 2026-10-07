@@ -33,10 +33,18 @@ class FrontController
             '/operadores1',
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjOperadoresController();
-                $controlador->ejercicio1Operadores();
+                $controlador->operadores1();
 
             },
             'get'
+        );
+        Route::add(
+            '/operadores1',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\EjOperadoresController();
+                $controlador->doOperadores1();
+            },
+            'post'
         );
 
         Route::add(
