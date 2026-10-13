@@ -180,7 +180,24 @@ class FrontController
             },
             'post'
         );
+        Route::add(
+            '/iterativas9',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->ejercicio9();
 
+            },
+            'get'
+        );
+
+        Route::add(
+            '/iterativas9',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->doEjercicio9();
+            },
+            'post'
+        );
         Route::add(
             '/demo-proveedores',
             function () {
