@@ -257,6 +257,16 @@ class FrontController
         );
 
         Route::add(
+            '/trabajador-db',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->trabajadorDB();
+
+            },
+            'get'
+        );
+
+        Route::add(
             '/demo-proveedores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\InicioController();
