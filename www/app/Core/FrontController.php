@@ -257,10 +257,20 @@ class FrontController
         );
 
         Route::add(
-            '/trabajador-db',
+            '/test-conection',
             function () {
                 $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->trabajadorDB();
+                $controlador->testDB();
+
+            },
+            'get'
+        );
+
+        Route::add(
+            '/consultas1',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->ejercicio1();
 
             },
             'get'

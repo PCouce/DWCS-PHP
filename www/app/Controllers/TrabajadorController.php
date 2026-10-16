@@ -7,16 +7,55 @@ use Com\Daw2\Models\TrabajadorModel;
 
 class TrabajadorController extends BaseController {
 
-    public function trabajadorDB() : void
+    public function testDB() : void
     {
+       $model = new TrabajadorModel();
+       $model-> getTrabajadores();
+    }
+
+    public function ejercicio1() : void{
         $data = array(
-            'titulo' => 'Trabajador DB',
-            'breadcrumb' => ['Inicio', 'Trabajador DB']
+            'titulo' => 'Ejercicios consultas',
+            'breadcrumb' => ['Inicio', 'Consultas'],
         );
 
-        $database = new TrabajadorModel();
+        $model = new TrabajadorModel();
+        $data['trabajadores'] = $model->getTrabajadores();
 
-        $this->view->showViews(array('templates/header.view.php', 'trabajador-db.view.php', 'templates/footer.view.php'), $data);
+        $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
+    }
+    public function ejercicio2() : void{
+        $data = array(
+            'titulo' => 'Ejercicios consultas',
+            'breadcrumb' => ['Inicio', 'Consultas'],
+        );
+
+        $model = new TrabajadorModel();
+        $data['trabajadores'] = $model->getTrabajadoresOrdenados();
+
+        $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
+    }
+    public function ejercicio3() : void{
+        $data = array(
+            'titulo' => 'Ejercicios consultas',
+            'breadcrumb' => ['Inicio', 'Consultas'],
+        );
+
+        $model = new TrabajadorModel();
+        $data['trabajadores'] = $model->getTrabajadoresStandard();
+
+        $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
+    }
+    public function ejercicio4() : void{
+        $data = array(
+            'titulo' => 'Ejercicios consultas',
+            'breadcrumb' => ['Inicio', 'Consultas'],
+        );
+
+        $model = new TrabajadorModel();
+        $data['trabajadores'] = $model->getTrabajadoresPorNombre();
+
+        $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
     }
 
 }
