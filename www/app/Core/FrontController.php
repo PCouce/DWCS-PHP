@@ -267,10 +267,37 @@ class FrontController
         );
 
         Route::add(
-            '/consultas1',
+            '/consultas1_1',
             function () {
                 $controlador = new \Com\Daw2\Controllers\TrabajadorController();
                 $controlador->ejercicio1();
+
+            },
+            'get'
+        );
+        Route::add(
+            '/consultas1_2',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->ejercicio2();
+
+            },
+            'get'
+        );
+        Route::add(
+            '/consultas1_3',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->ejercicio3();
+
+            },
+            'get'
+        );
+        Route::add(
+            '/consultas1_4',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->ejercicio4();
 
             },
             'get'

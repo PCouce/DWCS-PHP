@@ -14,7 +14,6 @@ declare(strict_types=1);
                     <th>Nombre Completo</th>
                     <th>Salario Bruto</th>
                     <th>IRPF</th>
-                    <th>Activo</th>
                     <th>Rol</th>
                     <th>País</th>
                 </tr>
@@ -27,7 +26,6 @@ declare(strict_types=1);
                         <td><?php echo $datos['username']; ?></td>
                         <td><?php echo $datos['salarioBruto']; ?></td>
                         <td><?php echo $datos['retencionIRPF']; ?></td>
-                        <td><?php echo $datos['activo']; ?></td>
                         <td><?php echo $datos['nombre_rol']; ?></td>
                         <td><?php echo $datos['country_name']; ?></td>
                     </tr>

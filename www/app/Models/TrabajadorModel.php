@@ -6,14 +6,14 @@ use PDO;
 
 class TrabajadorModel extends BaseDbModel
 {
+    private const string SELECT_FROM = "SELECT username, salarioBruto, retencionIRPF, nombre_rol, country_name
+                                        FROM trabajadores t
+                                        JOIN aux_countries ac ON ac.id = t.id_country
+                                        JOIN aux_rol_trabajador art ON art.id_rol = t.id_rol";
     public function getTrabajadores() : array
     {
         $trabajadores = $this->pdo->query(
-        "SELECT username, salarioBruto, retencionIRPF, activo, nombre_rol, country_name
-                FROM trabajadores t
-                JOIN aux_countries ac ON ac.id = t.id_country
-                JOIN aux_rol_trabajador art ON art.id_rol = t.id_rol
-        ")->fetchAll(PDO::FETCH_ASSOC);
+        self::SELECT_FROM)->fetchAll(PDO::FETCH_ASSOC);
         return $trabajadores;
     }
 
