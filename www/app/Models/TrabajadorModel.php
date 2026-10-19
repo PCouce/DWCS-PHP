@@ -52,4 +52,21 @@ class TrabajadorModel extends BaseDbModel
         )->fetchAll(PDO::FETCH_ASSOC);
         return $trabajadores;
     }
+
+    public function getTrabajadoresFiltros(array $datos = []) : array
+    {
+            $sql = self::SELECT_FROM;
+            $query = $this->pdo->query($sql);
+            $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $trabajadores;
+    }
+
+    public function getRoles() : array
+    {
+        $sql = "SELECT * FROM aux_rol_trabajador";
+        $query = $this->pdo->query($sql);
+        $roles = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $roles;
+    }
 }

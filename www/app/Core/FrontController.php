@@ -302,6 +302,26 @@ class FrontController
             },
             'get'
         );
+        Route::add(
+            '/trabajadores-filtros',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->getTrabajadoresFiltros();
+
+            },
+            'get'
+        );
+
+        Route::add(
+            '/trabajadores-filtros',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->getTrabajadoresFiltros();
+
+            },
+            'post'
+        );
+
 
         Route::add(
             '/demo-proveedores',

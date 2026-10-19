@@ -58,4 +58,17 @@ class TrabajadorController extends BaseController {
         $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
     }
 
+    public function getTrabajadoresFiltros() : void{
+        $data = array(
+            'titulo' => 'Ejercicios consultas',
+            'breadcrumb' => ['Inicio', 'Consultas'],
+        );
+
+        $model = new TrabajadorModel();
+        $data['roles'] = $model->getRoles();
+        $data['trabajadores'] = $model->getTrabajadoresFiltros();
+
+        $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
+    }
+
 }
