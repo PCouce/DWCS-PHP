@@ -207,10 +207,18 @@ class FrontController
             'get'
         );
         Route::add(
-            '/test-conexion',
+            '/todos-trabajadores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->testDb();
+                $controlador->getAllTrabajadores();
+            },
+            'get'
+        );
+        Route::add(
+            '/todos-trabajadores-ordenados',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->getAllTrabajadoresOrdenadosSalario();
             },
             'get'
         );

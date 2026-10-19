@@ -14,4 +14,26 @@ class TrabajadorController extends BaseController
         $model->getTrabajadores();
     }
 
+    public function getAllTrabajadores(): void
+    {
+        $data = array(
+            'titulo' => 'Todos los trabajadores',
+            'breadcrumb' => ['Inicio', 'Consultas simples'],
+        );
+        $model = new TrabajadorModel();
+        $data['trabajadores'] = $model->getAllTrabajadores();
+        $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function getAllTrabajadoresOrdenadosSalario(): void
+    {
+        $data = array(
+            'titulo' => 'Todos los trabajadores ordenados',
+            'breadcrumb' => ['Inicio', 'Consultas simples'],
+        );
+        $model = new TrabajadorModel();
+        $data['trabajadores'] = $model->getAllTrabajadoresOrdenados();
+        $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
 }
