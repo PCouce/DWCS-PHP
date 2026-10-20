@@ -17,24 +17,8 @@ declare(strict_types=1);
                 <div class="row">
                     <div class="col-12 col-lg-4">
                         <div class="mb-3">
-                            <label for="alias">Alias:</label>
-                            <input type="text" class="form-control" name="alias" id="alias" value="" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="mb-3">
-                            <label for="nombre_completo">Nombre completo:</label>
-                            <input type="text" class="form-control" name="nombre_completo" id="nombre_completo" value="" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-3">
-                        <div class="mb-3">
-                            <label for="id_tipo">Tipo:</label>
-                            <select name="id_tipo[]" id="id_tipo" class="form-control select2" data-placeholder="Tipo proveedor" multiple>
-                                <option value="">-</option>
-                                <option value="3" >Componentes móviles</option>
-                                <option value="4" >Componentes PC</option>
-                            </select>
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre" value="" />
                         </div>
                     </div>
                     <div class="col-12 col-lg-4">
@@ -42,21 +26,23 @@ declare(strict_types=1);
                             <label for="id_rol">Rol:</label>
                             <select name="id_rol" id="id_rol" class="form-control" data-placeholder="Rol">
                                 <option value="">-</option>
-                                <?php foreach ($roles as $rol) : ?>
-                                <option value="<?= $rol['id_rol'] ?>" ><?= $rol['nombre_rol'] ?></option>
-                                <?php endforeach; ?>
+                                <?php   if (isset($roles)) { ?>
+                                    <?php foreach ($roles as $rol) : ?>
+                                    <option value="<?= $rol['id_rol'] ?>" ><?= $rol['nombre_rol'] ?></option>
+                                    <?php endforeach; ?>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="mb-3">
-                            <label for="anho_fundacion">Año fundación:</label>
+                            <label for="salario">Salario:</label>
                             <div class="row">
                                 <div class="col-6">
-                                    <input type="text" class="form-control" name="min_anho" id="min_anho" value="" placeholder="Mí­nimo" />
+                                    <input type="number" class="form-control" name="min_salario" id="min_salario" value="" placeholder="Mí­nimo" />
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" name="max_anho" id="max_anho" value="" placeholder="Máximo" />
+                                    <input type="number" class="form-control" name="max_salario" id="max_salario" value="" placeholder="Máximo" />
                                 </div>
                             </div>
                         </div>

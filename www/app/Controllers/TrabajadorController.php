@@ -66,7 +66,7 @@ class TrabajadorController extends BaseController {
 
         $model = new TrabajadorModel();
         $data['roles'] = $model->getRoles();
-        $data['trabajadores'] = $model->getTrabajadoresFiltros();
+        $data['trabajadores'] = $model->getTrabajadoresFiltros($_GET);
 
         $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
     }

@@ -55,9 +55,41 @@ class TrabajadorModel extends BaseDbModel
 
     public function getTrabajadoresFiltros(array $datos = []) : array
     {
-            $sql = self::SELECT_FROM;
-            $query = $this->pdo->query($sql);
-            $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (count($datos) > 0) {
+            if ($datos['id_rol'] !== "") {
+                $sql = self::SELECT_FROM . " WHERE t.id_rol LIKE :id_rol";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute(['id_rol' => $datos['id_rol']]);
+
+                return $trabajadores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            if ($datos['nombre'] !== "") {
+                $sql = self::SELECT_FROM . " WHERE username LIKE :username";
+                $stmt = $this->pdo->prepare($sql);
+                $datos['username'] = "%" . $datos['nombre'] . "%";
+                $stmt->execute(['username' => $datos['username']]);
+
+                return $trabajadores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            if ($datos['max_salario'] !== "" || $datos['min_salario'] !== "") {
+                if ($datos['max_salario'] !== "") {
+                    $sql = self::SELECT_FROM . " WHERE salarioBruto LIKE :salarioBruto";
+                    $stmt = $this->pdo->prepare($sql);
+                    $stmt->execute(['salarioBruto' => $datos['max_salario']]);
+                } else {
+                    $sql = self::SELECT_FROM . " WHERE username LIKE :username";
+                    $stmt = $this->pdo->prepare($sql);
+                    $datos['username'] = "%" . $datos['nombre'] . "%";
+                    $stmt->execute(['username' => $datos['username']]);
+                }
+
+                return $trabajadores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }
+
+        $sql = self::SELECT_FROM;
+        $query = $this->pdo->query($sql);
+        $trabajadores = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return $trabajadores;
     }
