@@ -36,4 +36,17 @@ class TrabajadorController extends BaseController
         $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);
     }
 
+    public function getTrabajadores(): void
+    {
+        $data = array(
+            'titulo' => 'Listado trabajadores',
+            'breadcrumb' => ['Inicio', 'Trabajadores'],
+        );
+        $model = new TrabajadorModel();
+        $data['trabajadores'] = $model->getFilterBy($_GET);
+        $input = filter_var_array($_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $data['input'] = $input;
+        $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);
+    }
+
 }

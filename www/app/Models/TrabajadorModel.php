@@ -29,4 +29,17 @@ class TrabajadorModel extends BaseDbModel
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll();
     }
+
+    public function getFilterBy(array $filtros): array
+    {
+        $sql = self::SELECT_FROM;
+        $values = [];
+        if (!empty($filtros['username'])) {
+            $sql .= " WHERE username LIKE :username";
+            $values["username"] = "%" . $filtros['username'] . "%";
+        }
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($values);
+        return $stmt->fetchAll();
+    }
 }

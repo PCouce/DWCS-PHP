@@ -222,6 +222,14 @@ class FrontController
             },
             'get'
         );
+        Route::add(
+            '/trabajadores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->getTrabajadores();
+            },
+            'get'
+        );
         Route::pathNotFound(
             function () {
                 $controller = new \Com\Daw2\Controllers\ErroresController();
