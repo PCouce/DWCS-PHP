@@ -44,6 +44,7 @@ class TrabajadorController extends BaseController
         );
         $model = new TrabajadorModel();
         $data['trabajadores'] = $model->getFilterBy($_GET);
+        $data['roles'] = $model->getRoles();
         $input = filter_var_array($_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $data['input'] = $input;
         $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);

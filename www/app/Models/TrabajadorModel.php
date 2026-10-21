@@ -38,8 +38,28 @@ class TrabajadorModel extends BaseDbModel
             $sql .= " WHERE username LIKE :username";
             $values["username"] = "%" . $filtros['username'] . "%";
         }
+        if (!empty($filtros['id_rol'])) {
+            $sql .= " WHERE t.id_rol LIKE :id_rol";
+            $values["id_rol"] = (int)$filtros['id_rol'];
+        }
+        if (!empty($filtros['min_salario']) && !empty($filtros['max_salario'])) {
+            $sql .= " WHERE salarioBruto BETWEEN :min_salario AND :max_salario";
+            $values["min_salario"] = (int)$filtros['min_salario'];
+            $values["max_salario"] = (int)$filtros['max_salario'];
+        }
+        if (!empty($filtros['min_retencion']) && !empty($filtros['max_retencion'])) {
+            $sql .= " WHERE retencionIRPF BETWEEN :min_retencion AND :max_retencion";
+            $values["min_retencion"] = (int)$filtros['min_retencion'];
+            $values["max_retencion"] = (int)$filtros['max_retencion'];
+        }
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($values);
         return $stmt->fetchAll();
+    }
+
+    public function getRoles(): array {
+        $sql = "SELECT * FROM aux_rol_trabajador";
+        $query = $this->pdo->query($sql);
+        return $query->fetchAll();
     }
 }

@@ -18,11 +18,63 @@
                                 <input type="text" class="form-control" name="username" id="username" value="<?php echo $input['username'] ?? '';?>"  />
                             </div>
                         </div>
+                        <?php if (isset($roles)) { ?>
+                        <div class="col-12 col-lg-4">
+                            <div class="mb-3">
+                                <label for="id_rol">Rol:</label>
+                                <select name="id_rol" id="id_rol" class="form-control" data-placeholder="Rol">
+                                    <option value="">-</option>
+                                        <?php foreach ($roles as $rol) : ?>
+                                            <option value="<?= $rol['id_rol'] ?>" ><?= $rol['nombre_rol'] ?></option>
+                                        <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <?php } ?>
+                        <div class="col-12 col-lg-4">
+                            <div class="mb-3">
+                                <label for="salario_bruto">Salario Bruto:</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="min_salario" id="min_salario" value="" placeholder="Mí­nimo" />
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="max_salario" id="max_salario" value="" placeholder="Máximo" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="mb-3">
+                                <label for="retencion">Retención:</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="min_retencion" id="min_retencion" value="" placeholder="Mí­nimo" />
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="max_retencion" id="max_retencion" value="" placeholder="Máximo" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php if (isset($roles)) { ?>
+                            <div class="col-12 col-lg-4">
+                                <div class="mb-3">
+                                    <label for="nacionalidad">Nacionalidad:</label>
+                                    <select name="nacionalidad" id="nacionalidad" class="form-control" data-placeholder="Nacionalidad">
+                                        <option value="">-</option>
+                                        <?php foreach ($roles as $rol) : ?>
+                                            <option value="<?= $rol['id_rol'] ?>" ><?= $rol['nombre_rol'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="col-12 text-right">
-                        <a href="<?php echo $_SERVER['REQUEST_URI'] ?>" value="" class="btn btn-danger">Reiniciar filtros</a>
+                        <a href="/trabajadores" value="" class="btn btn-danger">Reiniciar filtros</a>
                         <input type="submit" value="Aplicar filtros" name="enviar" class="btn btn-primary ml-2"/>
                     </div>
                 </div>
