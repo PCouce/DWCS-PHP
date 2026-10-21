@@ -369,4 +369,127 @@ class IterativasController extends BaseController
         }
         return $errores;
     }
+
+    public function ejercicio9(string $json = '', array $errores = [], array $resultado = []): void
+    {
+        $data = array(
+            'titulo' => 'Ejercicios iterativas 09',
+            'breadcrumb' => ['Inicio', 'Cálculo de notas 2'],
+        );
+        $data['errores'] = $errores;
+        $data['json'] = $json;
+        $data['resultado'] = $resultado;
+        $this->view->showViews(array('templates/header.view.php', 'iterativas9.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function doEjercicio9(): void
+    {
+        $errores = $this->checkEjercicio09($_POST);
+        $inputJson = filter_var($_POST['json'], FILTER_SANITIZE_SPECIAL_CHARS);
+        if ($errores === []) {
+            $resultado = $this->procesarEjercicio09(json_decode($_POST['json'], true));
+            $this->ejercicio9($inputJson, $errores, $resultado);
+        } else {
+
+            $this->ejercicio9($inputJson, $errores);
+        }
+    }
+
+    private function checkEjercicio09(array $datosFormulario): array
+    {
+        $errores = [];
+        if (!isset($datosFormulario['json'])) {
+            $errores['json'][] = 'Campo obligatorio';
+        } else {
+            $jsonText = $datosFormulario['json'];
+            if ($jsonText === '') {
+                $errores['json'][] = 'Campo obligatorio';
+            } else {
+                if (!json_validate($jsonText)) {
+                    $errores['json'][] = 'Inserte un json válido';
+                } else {
+                    $data = json_decode($jsonText, true);
+                    foreach ($data as $modulo => $alumnado) {
+                        if (!is_string($modulo)) {
+                            $errores['json'][] = "El valor $modulo no es una string";
+                        }
+                        if (!is_array($alumnado)) {
+                            $errores['json'][] = "El modulo $modulo no tiene un array de alumando asociado";
+                        } else {
+                            foreach ($alumnado as $nombre => $notas) {
+                                if (!is_string($nombre)) {
+                                    $errores['json'][] = "En el modulo $modulo, el alumno '$nombre' no es de tipo string";
+                                }
+                                if (!is_array($notas)) {
+                                    $errores['json'][] = "En el modulo $modulo, el alumno '$nombre' no tiene un array de notas";
+                                } else {
+                                    if ($notas === []) {
+                                        $errores['json'][] = "En el modulo $modulo, el alumno '$nombre' no tiene notas asignadas";
+                                    } else {
+                                        foreach ($notas as $nota) {
+                                            if (!is_numeric($nota)) {
+                                                $errores['json'][] = "En el modulo $modulo, el alumno '$nombre' tiene la nota $nota que no es un número";
+                                            } else if ($nota < 0 || $nota > 10) {
+                                                $errores['json'][] = "En el modulo $modulo, el alumno '$nombre' tiene la nota $nota que no es un valor entre 0 y 10";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $errores;
+    }
+
+    private function procesarEjercicio09(array $datos) : array {
+        $resultado = [];
+        foreach ($datos as $modulo => $alumnos) {
+            $datosModulo = [
+                'media' => null,
+                'aprobados' => 0,
+                'suspensos' => 0,
+                'max' => [
+                    'alumno' => null,
+                    'nota' => null,
+                ],
+                'min' => [
+                    'alumno' => null,
+                    'nota' => null,
+                ]
+            ];
+            $notasFinales = [];
+            foreach($alumnos as $nombre => $notas) {
+                $mediaAlumno = array_sum($notas) / count($notas);
+                $notasFinales[] = $mediaAlumno;
+                if ($mediaAlumno >= 5) {
+                    $datosModulo['aprobados']++;
+                } else {
+                    $datosModulo['suspensos']++;
+                }
+                if ($datosModulo['max']['alumno'] === null) {
+                    $datosModulo['max']['alumno'] = $nombre;
+                    $datosModulo['max']['nota'] = $mediaAlumno;
+                    $datosModulo['min']['alumno'] = $nombre;
+                    $datosModulo['min']['nota'] = $mediaAlumno;
+                } else {
+                    if ($datosModulo['max']['nota'] < $mediaAlumno) {
+                        $datosModulo['max']['alumno'] = $nombre;
+                        $datosModulo['max']['nota'] = $mediaAlumno;
+                    }
+                    if ($datosModulo['min']['nota'] > $mediaAlumno) {
+                        $datosModulo['min']['alumno'] = $nombre;
+                        $datosModulo['min']['nota'] = $mediaAlumno;
+                    }
+                }
+            }
+            if (count($notasFinales) > 0) {
+                $datosModulo['media'] = array_sum($notasFinales) / count($notasFinales);
+            }
+            $resultado[$modulo] = $datosModulo;
+        }
+        return $resultado;
+    }
 }

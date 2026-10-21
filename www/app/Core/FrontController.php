@@ -180,7 +180,24 @@ class FrontController
             },
             'post'
         );
+        Route::add(
+            '/iterativas9',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->ejercicio9();
 
+            },
+            'get'
+        );
+
+        Route::add(
+            '/iterativas9',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\IterativasController();
+                $controlador->doEjercicio9();
+            },
+            'post'
+        );
         Route::add(
             '/iterativas2',
             function () {
@@ -328,6 +345,30 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\InicioController();
                 $controlador->demo();
+            },
+            'get'
+        );
+        Route::add(
+            '/todos-trabajadores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->getAllTrabajadores();
+            },
+            'get'
+        );
+        Route::add(
+            '/todos-trabajadores-ordenados',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->getAllTrabajadoresOrdenadosSalario();
+            },
+            'get'
+        );
+        Route::add(
+            '/trabajadores',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->getTrabajadores();
             },
             'get'
         );

@@ -1,74 +1,52 @@
 <?php
 declare(strict_types=1);
+
 namespace Com\Daw2\Controllers;
 
 use Com\Daw2\Core\BaseController;
 use Com\Daw2\Models\TrabajadorModel;
 
-class TrabajadorController extends BaseController {
-
-    public function testDB() : void
+class TrabajadorController extends BaseController
+{
+    public function testDb()
     {
-       $model = new TrabajadorModel();
-       $model-> getTrabajadores();
+        $model = new TrabajadorModel();
+        $model->getTrabajadores();
     }
 
-    public function ejercicio1() : void{
+    public function getAllTrabajadores(): void
+    {
         $data = array(
-            'titulo' => 'Ejercicios consultas',
-            'breadcrumb' => ['Inicio', 'Consultas'],
+            'titulo' => 'Todos los trabajadores',
+            'breadcrumb' => ['Inicio', 'Consultas simples'],
         );
-
         $model = new TrabajadorModel();
-        $data['trabajadores'] = $model->getTrabajadores();
-
-        $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
-    }
-    public function ejercicio2() : void{
-        $data = array(
-            'titulo' => 'Ejercicios consultas',
-            'breadcrumb' => ['Inicio', 'Consultas'],
-        );
-
-        $model = new TrabajadorModel();
-        $data['trabajadores'] = $model->getTrabajadoresOrdenados();
-
-        $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
-    }
-    public function ejercicio3() : void{
-        $data = array(
-            'titulo' => 'Ejercicios consultas',
-            'breadcrumb' => ['Inicio', 'Consultas'],
-        );
-
-        $model = new TrabajadorModel();
-        $data['trabajadores'] = $model->getTrabajadoresStandard();
-
-        $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
-    }
-    public function ejercicio4() : void{
-        $data = array(
-            'titulo' => 'Ejercicios consultas',
-            'breadcrumb' => ['Inicio', 'Consultas'],
-        );
-
-        $model = new TrabajadorModel();
-        $data['trabajadores'] = $model->getTrabajadoresPorNombre();
-
-        $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
+        $data['trabajadores'] = $model->getAllTrabajadores();
+        $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);
     }
 
-    public function getTrabajadoresFiltros() : void{
+    public function getAllTrabajadoresOrdenadosSalario(): void
+    {
         $data = array(
-            'titulo' => 'Ejercicios consultas',
-            'breadcrumb' => ['Inicio', 'Consultas'],
+            'titulo' => 'Todos los trabajadores ordenados',
+            'breadcrumb' => ['Inicio', 'Consultas simples'],
         );
-
         $model = new TrabajadorModel();
-        $data['roles'] = $model->getRoles();
-        $data['trabajadores'] = $model->getTrabajadoresFiltros($_GET);
+        $data['trabajadores'] = $model->getAllTrabajadoresOrdenados();
+        $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);
+    }
 
-        $this->view->showViews(array('templates/header.view.php', 'consultas1.view.php', 'templates/footer.view.php'), $data);
+    public function getTrabajadores(): void
+    {
+        $data = array(
+            'titulo' => 'Listado trabajadores',
+            'breadcrumb' => ['Inicio', 'Trabajadores'],
+        );
+        $model = new TrabajadorModel();
+        $data['trabajadores'] = $model->getFilterBy($_GET);
+        $input = filter_var_array($_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $data['input'] = $input;
+        $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);
     }
 
 }
