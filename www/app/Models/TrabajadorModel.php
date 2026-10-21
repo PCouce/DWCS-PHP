@@ -71,17 +71,12 @@ class TrabajadorModel extends BaseDbModel
 
                 return $trabajadores = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
-            if ($datos['max_salario'] !== "" || $datos['min_salario'] !== "") {
-                if ($datos['max_salario'] !== "") {
-                    $sql = self::SELECT_FROM . " WHERE salarioBruto LIKE :salarioBruto";
-                    $stmt = $this->pdo->prepare($sql);
-                    $stmt->execute(['salarioBruto' => $datos['max_salario']]);
-                } else {
-                    $sql = self::SELECT_FROM . " WHERE username LIKE :username";
-                    $stmt = $this->pdo->prepare($sql);
-                    $datos['username'] = "%" . $datos['nombre'] . "%";
-                    $stmt->execute(['username' => $datos['username']]);
-                }
+            if ($datos['max_salario'] !== "" && $datos['min_salario'] !== "") {
+                $sql = self::SELECT_FROM . " WHERE salarioBruto >= :maxSalario && salarioBruto <= :minSalario";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute(['maxSalario' => $datos['max_salario'], 'minSalario' => $datos['min_salario']]);
+            }
+        }
 
                 return $trabajadores = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
