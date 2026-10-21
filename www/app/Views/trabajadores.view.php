@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="col-12 text-right">
-                        <a href="<?php echo $_SERVER['REQUEST_URI'] ?>" value="" class="btn btn-danger">Reiniciar filtros</a>
+                        <a href="<?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?')?>" value="" class="btn btn-danger">Reiniciar filtros</a>
                         <input type="submit" value="Aplicar filtros" name="enviar" class="btn btn-primary ml-2"/>
                     </div>
                 </div>
