@@ -18,63 +18,66 @@
                                 <input type="text" class="form-control" name="username" id="username" value="<?php echo $input['username'] ?? '';?>"  />
                             </div>
                         </div>
-                        <?php if (isset($roles)) { ?>
                         <div class="col-12 col-lg-4">
-                            <div class="mb-3">
+                            <div class="form-group">
                                 <label for="id_rol">Rol:</label>
-                                <select name="id_rol" id="id_rol" class="form-control" data-placeholder="Rol">
+                                <select name="id_rol" id="id_rol" class="form-control select2">
                                     <option value="">-</option>
-                                        <?php foreach ($roles as $rol) : ?>
-                                            <option value="<?= $rol['id_rol'] ?>" ><?= $rol['nombre_rol'] ?></option>
-                                        <?php endforeach; ?>
+                                    <?php foreach ($roles as $rol) {
+                                        ?>
+                                        <option value="<?php echo $rol['id_rol'] ?>" <?php echo (isset($input['id_rol']) && $rol['id_rol'] == $input['id_rol']) ? 'selected' : ''; ?>><?php echo ucfirst($rol['nombre_rol']); ?></option>
+                                        <?php
+                                    }
+                                    ?>
                                 </select>
-                            </div>
-                        </div>
-                        <?php } ?>
-                        <div class="col-12 col-lg-4">
-                            <div class="mb-3">
-                                <label for="salario_bruto">Salario Bruto:</label>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <input type="text" class="form-control" name="min_salario" id="min_salario" value="<?php echo $input['min_salario'] ?? ''?>" placeholder="Mí­nimo" />
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="text" class="form-control" name="max_salario" id="max_salario" value="<?php echo $input['max_salario'] ?? ''?>" placeholder="Máximo" />
-                                    </div>
-                                </div>
+                                <p class="text-error small"><?php echo $errors['id_rol'] ?? ''; ?></p>
                             </div>
                         </div>
                         <div class="col-12 col-lg-4">
                             <div class="mb-3">
-                                <label for="retencion">Retención:</label>
+                                <label for="min_salarioBruto">Salario Bruto:</label>
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="text" class="form-control" name="min_retencion" id="min_retencion" value="" placeholder="Mí­nimo" />
+                                        <input type="text" class="form-control" name="min_salarioBruto" id="min_salarioBruto" value="<?php echo $input['min_salarioBruto'] ?? '' ?>" placeholder="Mínimo" />
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" class="form-control" name="max_retencion" id="max_retencion" value="" placeholder="Máximo" />
+                                        <input type="text" class="form-control" name="max_salarioBruto" id="max_SalarioBruto" value="<?php echo $input['max_salarioBruto'] ?? ''?>" placeholder="Máximo" />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php if (isset($countries)) { ?>
-                            <div class="col-12 col-lg-4">
-                                <div class="mb-3">
-                                    <label for="nacionalidad">Nacionalidad:</label>
-                                    <select name="nacionalidad" id="nacionalidad" class="form-control" data-placeholder="Nacionalidad">
-                                        <option value="">-</option>
-                                        <?php foreach ($countries as $country) : ?>
-                                            <option value="<?= $country['id_rol'] ?>" ><?= $country['nombre_rol'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                        <div class="col-12 col-lg-4">
+                            <div class="mb-3">
+                                <label for="min_retencionIRPF">Rentención:</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="min_retencionIRPF" id="min_retencionIRPF" value="<?php echo $input['min_retencionIRPF'] ?? '' ?>" placeholder="Mínimo" />
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="max_retencionIRPF" id="max_retencionIRPF" value="<?php echo $input['max_retencionIRPF'] ?? ''?>" placeholder="Máximo" />
+                                    </div>
                                 </div>
                             </div>
-                        <?php } ?>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="form-group">
+                                <label for="id_country">País:</label>
+                                <select name="id_country[]" id="id_country" class="form-control select2" multiple>
+                                    <?php foreach ($countries as $country) {
+                                        ?>
+                                        <option value="<?php echo $country['id_country'] ?>" <?php echo (isset($input['id_country']) && in_array($country['id_country'], $input['id_country'])) ? 'selected' : ''; ?>><?php echo ucfirst($country['country_name']); ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                                <p class="text-error small"><?php echo $errors['id_country'] ?? ''; ?></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
                     <div class="col-12 text-right">
-                        <a href="/trabajadores" value="" class="btn btn-danger">Reiniciar filtros</a>
+                        <a href="<?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?')?>" value="" class="btn btn-danger">Reiniciar filtros</a>
                         <input type="submit" value="Aplicar filtros" name="enviar" class="btn btn-primary ml-2"/>
                     </div>
                 </div>
