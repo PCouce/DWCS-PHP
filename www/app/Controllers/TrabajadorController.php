@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Com\Daw2\Controllers;
 
 use Com\Daw2\Core\BaseController;
+use Com\Daw2\Models\AuxRolTrabajadoresModel;
 use Com\Daw2\Models\TrabajadorModel;
 
 class TrabajadorController extends BaseController
@@ -44,7 +45,10 @@ class TrabajadorController extends BaseController
         );
         $model = new TrabajadorModel();
         $data['trabajadores'] = $model->getFilterBy($_GET);
-        $data['roles'] = $model->getRoles();
+        $auxTrabajadoresRolModel = new AuxRolTrabajadoresModel();
+        $data['roles'] = $auxTrabajadoresRolModel->getAll();
+        $countriesModel = new AuxRolTrabajadoresModel();
+        $data['countries'] = $countriesModel->getAll();
         $input = filter_var_array($_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $data['input'] = $input;
         $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);

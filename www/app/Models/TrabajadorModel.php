@@ -37,29 +37,42 @@ class TrabajadorModel extends BaseDbModel
         if (!empty($filtros['username'])) {
             $sql .= " WHERE username LIKE :username";
             $values["username"] = "%" . $filtros['username'] . "%";
-        }
-        if (!empty($filtros['id_rol'])) {
+        } elseif (!empty($filtros['id_rol'])) {
             $sql .= " WHERE t.id_rol LIKE :id_rol";
             $values["id_rol"] = (int)$filtros['id_rol'];
-        }
-        if (!empty($filtros['min_salario']) && !empty($filtros['max_salario'])) {
-            $sql .= " WHERE salarioBruto BETWEEN :min_salario AND :max_salario";
-            $values["min_salario"] = (int)$filtros['min_salario'];
-            $values["max_salario"] = (int)$filtros['max_salario'];
-        }
-        if (!empty($filtros['min_retencion']) && !empty($filtros['max_retencion'])) {
-            $sql .= " WHERE retencionIRPF BETWEEN :min_retencion AND :max_retencion";
-            $values["min_retencion"] = (int)$filtros['min_retencion'];
-            $values["max_retencion"] = (int)$filtros['max_retencion'];
+        } elseif (!empty($filtros['min_salario']) || !empty($filtros['max_salario'])) {
+            if (!empty($filtros['min_salario'])) {
+                $salarConditions[] = "salarioBruto >= :min_salario";
+                $values["min_salario"] = (int)$filtros['min_salario'];
+            }
+            if (!empty($filtros['max_salario'])) {
+                $salarConditions[] = "salarioBruto >= :max_salario";
+                $values["max_salario"] = (int)$filtros['max_salario'];
+            }
+            $sql .= " WHERE " . implode(" AND ", $salarConditions);
+        } elseif (!empty($filtros['min_retencion']) || !empty($filtros['max_retencion'])) {
+            if (!empty($filtros['min_retencion'])) {
+                $salarConditions[] = "salarioBruto >= :min_retencion";
+                $values["min_retencion"] = (int)$filtros['min_retencion'];
+            }
+            if (!empty($filtros['max_retencion'])) {
+                $salarConditions[] = "salarioBruto >= :max_retencion";
+                $values["max_retencion"] = (int)$filtros['max_retencion'];
+            }
+            $sql .= " WHERE " . implode(" AND ", $salarConditions);
+        } elseif (!empty($filtros['id_country']) && is_array($filtros['id_country'])) {
+            $countries = [];
+            $i = 1;
+            foreach ($filtros['id_country'] as $idCountry) {
+                $countries[":id_country{$i}"] = $idCountry;
+                $i++;
+            }
+            $claves = array_keys($countries);
+            $sql .= " WHERE " . implode(" AND ", $claves);
+            $values = array_merge($values, $countries);
         }
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($values);
         return $stmt->fetchAll();
-    }
-
-    public function getRoles(): array {
-        $sql = "SELECT * FROM aux_rol_trabajador";
-        $query = $this->pdo->query($sql);
-        return $query->fetchAll();
     }
 }

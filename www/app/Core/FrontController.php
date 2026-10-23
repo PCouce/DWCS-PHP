@@ -323,20 +323,10 @@ class FrontController
             '/trabajadores-filtros',
             function () {
                 $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->getTrabajadoresFiltros();
+                $controlador->getTrabajadores();
 
             },
             'get'
-        );
-
-        Route::add(
-            '/trabajadores-filtros',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->getTrabajadoresFiltros();
-
-            },
-            'post'
         );
 
 

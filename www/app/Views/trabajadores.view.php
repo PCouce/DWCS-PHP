@@ -36,10 +36,10 @@
                                 <label for="salario_bruto">Salario Bruto:</label>
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="text" class="form-control" name="min_salario" id="min_salario" value="" placeholder="Mí­nimo" />
+                                        <input type="text" class="form-control" name="min_salario" id="min_salario" value="<?php echo $input['min_salario'] ?? ''?>" placeholder="Mí­nimo" />
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" class="form-control" name="max_salario" id="max_salario" value="" placeholder="Máximo" />
+                                        <input type="text" class="form-control" name="max_salario" id="max_salario" value="<?php echo $input['max_salario'] ?? ''?>" placeholder="Máximo" />
                                     </div>
                                 </div>
                             </div>
@@ -57,14 +57,14 @@
                                 </div>
                             </div>
                         </div>
-                        <?php if (isset($roles)) { ?>
+                        <?php if (isset($countries)) { ?>
                             <div class="col-12 col-lg-4">
                                 <div class="mb-3">
                                     <label for="nacionalidad">Nacionalidad:</label>
                                     <select name="nacionalidad" id="nacionalidad" class="form-control" data-placeholder="Nacionalidad">
                                         <option value="">-</option>
-                                        <?php foreach ($roles as $rol) : ?>
-                                            <option value="<?= $rol['id_rol'] ?>" ><?= $rol['nombre_rol'] ?></option>
+                                        <?php foreach ($countries as $country) : ?>
+                                            <option value="<?= $country['id_rol'] ?>" ><?= $country['nombre_rol'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
