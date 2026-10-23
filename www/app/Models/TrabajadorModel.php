@@ -37,6 +37,41 @@ class TrabajadorModel extends BaseDbModel
         if (!empty($filtros['username'])) {
             $sql .= " WHERE username LIKE :username";
             $values["username"] = "%" . $filtros['username'] . "%";
+        } else if (!empty($filtros['id_rol'])) {
+            $sql .= " WHERE t.id_rol = :id_rol";
+            $values["id_rol"] = $filtros['id_rol'];
+        } elseif (!empty($filtros['min_salarioBruto']) || !empty($filtros['max_salarioBruto'])) {
+            $salarConditions = [];
+            if (!empty($filtros['min_salarioBruto'])) {
+                $salarConditions[] = "salarioBruto >= :min_salarioBruto";
+                $values["min_salarioBruto"] = $filtros['min_salarioBruto'];
+            }
+            if (!empty($filtros['max_salarioBruto'])) {
+                $salarConditions[] = "salarioBruto <= :max_salarioBruto";
+                $values["max_salarioBruto"] = $filtros['max_salarioBruto'];
+            }
+            $sql .= " WHERE " . implode(" AND ", $salarConditions);
+        } elseif (!empty($filtros['min_retencionIRPF']) || !empty($filtros['max_retencionIRPF'])) {
+            $salarConditions = [];
+            if (!empty($filtros['min_retencionIRPF'])) {
+                $salarConditions[] = "retencionIRPF >= :min_retencionIRPF";
+                $values["min_retencionIRPF"] = $filtros['min_retencionIRPF'];
+            }
+            if (!empty($filtros['max_retencionIRPF'])) {
+                $salarConditions[] = "retencionIRPF <= :max_retencionIRPF";
+                $values["max_retencionIRPF"] = $filtros['max_retencionIRPF'];
+            }
+            $sql .= " WHERE " . implode(" AND ", $salarConditions);
+        } else if (!empty($filtros['id_country']) && is_array($filtros['id_country'])) {
+            $countries = [];
+            $i = 1;
+            foreach($filtros['id_country'] as $idCountry) {
+                $countries[":id_country{$i}"] = $idCountry;
+                $i++;
+            }
+            $claves = array_keys($countries);
+            $sql .= " WHERE t.id_country IN (" . implode(", ", $claves) . ")";
+            $values = array_merge($values, $countries);
         }
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($values);
