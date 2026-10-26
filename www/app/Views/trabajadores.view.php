@@ -97,11 +97,11 @@
                 <table id="tabladatos" class="table table-striped"">
                     <thead>
                         <tr>
-                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . "&order=1"?>">Username</a> <?php if ($input['order'] == 1) {?><i class="fas fa-sort-amount-down-alt"></i><?php }?></th>
-                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . "&order=2"?>">Salario Bruto</a><?php if ($input['order'] == 2) {?><i class="fas fa-sort-amount-down-alt"></i><?php }?></th>
-                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . "&order=3"?>">Retención</a><?php if ($input['order'] == 3) {?><i class="fas fa-sort-amount-down-alt"></i><?php }?></th>
-                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . "&order=4"?>">Rol</a><?php if ($input['order'] == 4) {?><i class="fas fa-sort-amount-down-alt"></i><?php }?></th>
-                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . "&order=5"?>">País</a><?php if ($input['order'] == 5) {?><i class="fas fa-sort-amount-down-alt"></i><?php }?></th>
+                            <th><a href="<?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?')?>">Username</a> <i class="fas fa-sort-amount-down-alt"></i></th>
+                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Salario Bruto</a></th>
+                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Retención</a></th>
+                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Rol</a></th>
+                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">País</a></th>
                         </tr>
                     </thead>
                     <tbody>
