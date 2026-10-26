@@ -3,7 +3,7 @@
     <div class="col-12">
         <div class="card shadow mb-4">
             <form method="get" action="">
-                <input type="hidden" name="order" value="1"/>
+                <input type="hidden" name="order" value="<?php echo $input['order'] ?? '1' ?>"/>
                 <div
                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Filtros</h6>
@@ -97,11 +97,11 @@
                 <table id="tabladatos" class="table table-striped"">
                     <thead>
                         <tr>
-                            <th><a href="<?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?')?>">Username</a> <i class="fas fa-sort-amount-down-alt"></i></th>
-                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Salario Bruto</a></th>
-                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Retención</a></th>
-                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Rol</a></th>
-                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">País</a></th>
+                            <th><a href="<?php echo $_SERVER['REQUEST_URI']?>">Username</a> <i class="fas fa-sort-amount-down-alt"></i></th>
+                            <th><a href="/trabajadores?order=2">Salario Bruto</a></th>
+                            <th><a href="/trabajadores?order=3">Retención</a></th>
+                            <th><a href="/trabajadores?order=4">Rol</a></th>
+                            <th><a href="/trabajadores?order=5">País</a></th>
                         </tr>
                     </thead>
                     <tbody>
