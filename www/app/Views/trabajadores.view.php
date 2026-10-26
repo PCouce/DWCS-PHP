@@ -21,7 +21,7 @@
                         <div class="col-12 col-lg-4">
                             <div class="form-group">
                                 <label for="id_rol">Rol:</label>
-                                <select name="id_rol" id="id_rol" class="form-control select2">
+                                <select name="id_rol" id="id_rol" class="form-control">
                                     <option value="">-</option>
                                     <?php foreach ($roles as $rol) {
                                         ?>
@@ -94,14 +94,14 @@
             <div class="card-body" id="card_table">
                 <div id="button_container" class="mb-3"></div>
                 <!--<form action="./?sec=formulario" method="post">                   -->
-                <table id="tabladatos" class="table table-striped">                    
+                <table id="tabladatos" class="table table-striped"">
                     <thead>
                         <tr>
-                            <th>Username</th>
-                            <th>Salario Bruto</th>
-                            <th>Retención</th>
-                            <th>Rol</th>
-                            <th>País</th>
+                            <th><a href="<?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?')?>">Username</a> <i class="fas fa-sort-amount-down-alt"></i></th>
+                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Salario Bruto</a></th>
+                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Retención</a></th>
+                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Rol</a></th>
+                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">País</a></th>
                         </tr>
                     </thead>
                     <tbody>

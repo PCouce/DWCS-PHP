@@ -77,6 +77,13 @@ class TrabajadorModel extends BaseDbModel
         if (!empty($whereClauses)) {
             $sql .= " WHERE " . implode(" AND ", $whereClauses);
         }
+        if (!empty($filtros['order'])) {
+            switch ($filtros['order']) {
+                case 1 | -1: $values["username"]
+                break;
+            }
+            $sql .= " ORDER BY ";
+        }
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($values);
