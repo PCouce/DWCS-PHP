@@ -73,6 +73,13 @@ class TrabajadorModel extends BaseDbModel
         if ($condiciones !== []) {
             $sql .= " WHERE " . implode(" AND ", $condiciones);
         }
+        switch ($filtros['order']) {
+            case 1: $sql .= " ORDER BY username ASC"; break;
+            case 2: $sql .= " ORDER BY salarioBruto ASC"; break;
+            case 3: $sql .= " ORDER BY retencionIRPF ASC"; break;
+            case 4: $sql .= " ORDER BY nombre_rol ASC"; break;
+            case 5: $sql .= " ORDER BY country_name ASC"; break;
+        }
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($values);
         return $stmt->fetchAll();
