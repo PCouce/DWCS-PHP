@@ -97,11 +97,11 @@
                 <table id="tabladatos" class="table table-striped"">
                     <thead>
                         <tr>
-                            <th><a href="<?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?')?>">Username</a> <i class="fas fa-sort-amount-down-alt"></i></th>
-                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Salario Bruto</a></th>
-                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Retención</a></th>
-                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">Rol</a></th>
-                            <th><a href="<?php $_SERVER['REQUEST_URI']?>">País</a></th>
+                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . '&order1'?>">Username</a> <i class="fas fa-sort-amount-down-alt"></i></th>
+                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . '&order2'?>">Salario Bruto</a></th>
+                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . '&order3'?>">Retención</a></th>
+                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . '&order4'?>">Rol</a></th>
+                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . '&order5'?>">País</a></th>
                         </tr>
                     </thead>
                     <tbody>

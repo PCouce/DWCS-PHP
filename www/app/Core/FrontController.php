@@ -319,16 +319,6 @@ class FrontController
             },
             'get'
         );
-        Route::add(
-            '/trabajadores-filtros',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->getTrabajadores();
-
-            },
-            'get'
-        );
-
 
         Route::add(
             '/demo-proveedores',
