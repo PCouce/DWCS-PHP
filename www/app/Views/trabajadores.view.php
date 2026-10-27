@@ -3,14 +3,13 @@
     <div class="col-12">
         <div class="card shadow mb-4">
             <form method="get" action="">
-                <input type="hidden" name="order" value="<?php echo $input['order'] ?? '1' ?>"/>
                 <div
                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Filtros</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <!--<form action="./?sec=formulario" method="post">                   -->
+                    <input type="hidden" name="order" value="<?php echo $order; ?>"/>
                     <div class="row">
                         <div class="col-12 col-lg-4">
                             <div class="mb-3">
@@ -21,7 +20,7 @@
                         <div class="col-12 col-lg-4">
                             <div class="form-group">
                                 <label for="id_rol">Rol:</label>
-                                <select name="id_rol" id="id_rol" class="form-control">
+                                <select name="id_rol" id="id_rol" class="form-control select2">
                                     <option value="">-</option>
                                     <?php foreach ($roles as $rol) {
                                         ?>
@@ -94,14 +93,14 @@
             <div class="card-body" id="card_table">
                 <div id="button_container" class="mb-3"></div>
                 <!--<form action="./?sec=formulario" method="post">                   -->
-                <table id="tabladatos" class="table table-striped"">
+                <table id="tabladatos" class="table table-striped">                    
                     <thead>
                         <tr>
-                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . '&order1'?>">Username</a> <i class="fas fa-sort-amount-down-alt"></i></th>
-                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . '&order2'?>">Salario Bruto</a></th>
-                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . '&order3'?>">Retención</a></th>
-                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . '&order4'?>">Rol</a></th>
-                            <th><a href="<?php echo $_SERVER['REQUEST_URI'] . '&order5'?>">País</a></th>
+                            <th><a href="/trabajadores?order=1&<?php echo $queryParams ?>">Username</a></a> <?php if ($order === 1): ?><i class="fas fa-sort-amount-down-alt"></i><?php endif; ?></th>
+                            <th><a href="/trabajadores?order=2&<?php echo $queryParams ?>">Salario Bruto</a> <?php if ($order === 2): ?><i class="fas fa-sort-amount-down-alt"></i><?php endif; ?></th>
+                            <th><a href="/trabajadores?order=3&<?php echo $queryParams ?>">Retención</a> <?php if ($order === 3): ?><i class="fas fa-sort-amount-down-alt"></i><?php endif; ?></th>
+                            <th><a href="/trabajadores?order=4&<?php echo $queryParams ?>">Rol</a> <?php if ($order === 4): ?><i class="fas fa-sort-amount-down-alt"></i><?php endif; ?></th>
+                            <th><a href="/trabajadores?order=5&<?php echo $queryParams ?>">País</a> <?php if ($order === 5): ?><i class="fas fa-sort-amount-down-alt"></i><?php endif; ?></th>
                         </tr>
                     </thead>
                     <tbody>

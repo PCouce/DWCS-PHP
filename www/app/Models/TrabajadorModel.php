@@ -9,6 +9,8 @@ use PDOException;
 
 class TrabajadorModel extends BaseDbModel
 {
+    private const array ORDER_FIELDS = ['t.username', 't.salarioBruto', 't.retencionIRPF', 'nombre_rol', 'country_name'];
+    private const DEFAULT_ORDER_INDEX = 1;
     private const string SELECT_FROM = "SELECT t.*, art.nombre_rol, ac.country_name FROM trabajadores t LEFT JOIN aux_rol_trabajador art ON art.id_rol = t.id_rol LEFT JOIN aux_countries ac ON ac.id = t.id_country";
     public function getTrabajadores(): array
     {
@@ -73,15 +75,20 @@ class TrabajadorModel extends BaseDbModel
         if ($condiciones !== []) {
             $sql .= " WHERE " . implode(" AND ", $condiciones);
         }
-        switch ($filtros['order']) {
-            case 1: $sql .= " ORDER BY username ASC"; break;
-            case 2: $sql .= " ORDER BY salarioBruto ASC"; break;
-            case 3: $sql .= " ORDER BY retencionIRPF ASC"; break;
-            case 4: $sql .= " ORDER BY nombre_rol ASC"; break;
-            case 5: $sql .= " ORDER BY country_name ASC"; break;
-        }
+        $sql .= " ORDER BY " . self::ORDER_FIELDS[$this->getOrderIndex($filtros) - 1];
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($values);
         return $stmt->fetchAll();
+    }
+
+    public function getOrderIndex(array $filtros): int
+    {
+        if (empty($filtros['order'])) {
+            return self::DEFAULT_ORDER_INDEX;
+        } elseif (filter_var($filtros['order'], FILTER_VALIDATE_INT) === false || $filtros['order'] < 1 || $filtros['order'] > count(self::ORDER_FIELDS)) {
+            return self::DEFAULT_ORDER_INDEX;
+        } else {
+            return (int)$filtros['order'];
+        }
     }
 }
