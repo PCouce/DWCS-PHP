@@ -33,4 +33,19 @@ if (!function_exists('printTableHeader')) {
         $result .= '</tr></thead>';
         return $result;
     }
+    function printPageNavigator(string $queryParams = '', ?string $baseUrl = null): string {
+        $result = '<li class="page-item">';
+        if ($baseUrl === null) {
+            $baseUrl = strtok($_SERVER['REQUEST_URI'] ?? '/', '?');
+        }
+        $i = 1;
+        foreach ($pagina as $value) {
+            $urlPagina = "{$baseUrl}?page={$i}";
+            $urlPagina .= ($queryParams === '') ? '' : "&$queryParams";
+            $result .= "<a class='page-link' href=\"$urlPagina\">$value</a>";
+            $i++;
+        }
+        $result .= '</li>';
+        return $result;
+    }
 }

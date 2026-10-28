@@ -78,6 +78,11 @@ class TrabajadorModel extends BaseDbModel
         $sentido = !empty($filtros['sentido']) && $filtros['sentido'] === 'desc' ? 'DESC' : 'ASC';
         $sql .= " ORDER BY " . self::ORDER_FIELDS[$this->getOrderIndex($filtros) - 1] . " $sentido";
 
+        if (!empty($filtros['page'])) {
+            $limit_query = 20;
+            $sql .= " LIMIT " . $filtros['page'] * $limit_query . " , " . $limit_query;
+        }
+
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($values);
         return $stmt->fetchAll();
