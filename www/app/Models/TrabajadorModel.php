@@ -76,6 +76,9 @@ class TrabajadorModel extends BaseDbModel
             $sql .= " WHERE " . implode(" AND ", $condiciones);
         }
         $sql .= " ORDER BY " . self::ORDER_FIELDS[$this->getOrderIndex($filtros) - 1];
+        if (!empty($filtros['orden'])) {
+            $sql.= " " . $filtros['orden'];
+        }
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($values);
         return $stmt->fetchAll();
