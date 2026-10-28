@@ -61,6 +61,7 @@ class TrabajadorController extends BaseController
             unset($getOrder['orden']);
         }
         unset($getOrder['order']);
+        unset($getOrder['sentido']);
         $data['queryParams'] = http_build_query($getOrder);
         $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);
     }
