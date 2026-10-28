@@ -56,6 +56,7 @@ class TrabajadorController extends BaseController
         //No modificamos la superglobal, la copiamos en $getOrder
         $getOrder = $_GET;
         unset($getOrder['order']);
+        unset($getOrder['sentido']);
         $data['queryParams'] = http_build_query($getOrder);
         $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);
     }
