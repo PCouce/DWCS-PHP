@@ -12,6 +12,8 @@ class TrabajadorModel extends BaseDbModel
     private const array ORDER_FIELDS = ['t.username', 't.salarioBruto', 't.retencionIRPF', 'nombre_rol', 'country_name'];
     private const DEFAULT_ORDER_INDEX = 1;
     private const string SELECT_FROM = "SELECT t.*, art.nombre_rol, ac.country_name FROM trabajadores t LEFT JOIN aux_rol_trabajador art ON art.id_rol = t.id_rol LEFT JOIN aux_countries ac ON ac.id = t.id_country";
+
+    private const LIMIT_QUERY = 20;
     public function getTrabajadores(): array
     {
         $trabajadores = $this->pdo->query('SELECT * FROM trabajadores')->fetchAll();
@@ -79,8 +81,7 @@ class TrabajadorModel extends BaseDbModel
         $sql .= " ORDER BY " . self::ORDER_FIELDS[$this->getOrderIndex($filtros) - 1] . " $sentido";
 
         if (!empty($filtros['page'])) {
-            $limit_query = 20;
-            $sql .= " LIMIT " . $filtros['page'] * $limit_query . " , " . $limit_query;
+            $sql .= " LIMIT " . $filtros['page'] * self::LIMIT_QUERY . " , " . self::LIMIT_QUERY;
         }
 
         $stmt = $this->pdo->prepare($sql);
