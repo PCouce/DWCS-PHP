@@ -11,7 +11,7 @@
           </li> 
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item <?php echo (in_array(strtok($_SERVER['REQUEST_URI'] ?? '/', '?') , [$_ENV['host.folder'] . 'demo-proveedores', $_ENV['host.folder'] . 'trabajadores'])) ? 'menu-open' : '';?>">
+          <li class="nav-item <?php echo (in_array(strtok($_SERVER['REQUEST_URI'] ?? '/', '?') , [$_ENV['host.folder'] . 'demo-proveedores', $_ENV['host.folder'] . 'trabajadores', $_ENV['host.folder'] . 'usuarios'])) ? 'menu-open' : '';?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -24,6 +24,12 @@
                     <a href="<?php echo $_ENV['host.folder'] ?>trabajadores" class="nav-link <?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?') === $_ENV['host.folder'] . 'trabajadores' ? 'active' : ''; ?>">
                         <i class="fas fa-briefcase nav-icon"></i>
                         <p>Trabajadores</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo $_ENV['host.folder'] ?>usuarios" class="nav-link <?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?') === $_ENV['host.folder'] . 'usuarios' ? 'active' : ''; ?>">
+                        <i class="fas fa-briefcase nav-icon"></i>
+                        <p>Usuarios</p>
                     </a>
                 </li>
               <li class="nav-item">

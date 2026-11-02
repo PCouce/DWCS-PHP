@@ -344,11 +344,21 @@ class FrontController
             },
             'get'
         );
+
         Route::add(
             '/trabajadores',
             function () {
                 $controlador = new \Com\Daw2\Controllers\TrabajadorController();
                 $controlador->getTrabajadores();
+            },
+            'get'
+        );
+
+        Route::add(
+            '/usuarios',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\UsuarioController();
+                $controlador->getUsuarios();
             },
             'get'
         );
