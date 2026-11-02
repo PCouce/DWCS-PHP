@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Com\Daw2\Models;
 
 use Com\Daw2\Core\BaseDbModel;
+use Com\Daw2\Libraries\SQLConditions;
 use PDO;
 use PDOException;
 
@@ -38,46 +39,10 @@ class TrabajadorModel extends BaseDbModel
     public function getFilterBy(array $filtros): array
     {
         $sql = self::SELECT . self::FROM;
-        $values = [];
-        $condiciones = [];
-        if (!empty($filtros['username'])) {
-            $condiciones[] = "username LIKE :username";
-            $values["username"] = "%" . $filtros['username'] . "%";
-        }
-        if (!empty($filtros['id_rol'])) {
-            $condiciones[] = "t.id_rol = :id_rol";
-            $values["id_rol"] = $filtros['id_rol'];
-        }
-        if (!empty($filtros['min_salarioBruto'])) {
-            $condiciones[] = "salarioBruto >= :min_salarioBruto";
-            $values["min_salarioBruto"] = $filtros['min_salarioBruto'];
-        }
-        if (!empty($filtros['max_salarioBruto'])) {
-            $condiciones[] = "salarioBruto <= :max_salarioBruto";
-            $values["max_salarioBruto"] = $filtros['max_salarioBruto'];
-        }
-        if (!empty($filtros['min_retencionIRPF'])) {
-            $condiciones[] = "retencionIRPF >= :min_retencionIRPF";
-            $values["min_retencionIRPF"] = $filtros['min_retencionIRPF'];
-        }
-        if (!empty($filtros['max_retencionIRPF'])) {
-            $condiciones[] = "retencionIRPF <= :max_retencionIRPF";
-            $values["max_retencionIRPF"] = $filtros['max_retencionIRPF'];
-        }
-        if (!empty($filtros['id_country']) && is_array($filtros['id_country'])) {
-            $countries = [];
-            $i = 1;
-            foreach($filtros['id_country'] as $idCountry) {
-                $countries[":id_country{$i}"] = $idCountry;
-                $i++;
-            }
-            $claves = array_keys($countries);
-            $condiciones[] =  "t.id_country IN (" . implode(", ", $claves) . ")";
-            $values = array_merge($values, $countries);
-        }
-        if ($condiciones !== []) {
-            $sql .= " WHERE " . implode(" AND ", $condiciones);
-        }
+
+        $sqlConditions = $this->generateWhereByFilter($filtros);
+        $sql .= $sqlConditions->whereSQL;
+
         $sentido = !empty($filtros['sentido']) && $filtros['sentido'] === 'desc' ? 'DESC' : 'ASC';
         $sql .= " ORDER BY " . self::ORDER_FIELDS[$this->getOrderIndex($filtros) - 1] . " $sentido";
 
@@ -86,14 +51,23 @@ class TrabajadorModel extends BaseDbModel
         $sql .= " LIMIT " . (($currentPage - 1) * self::ROWS_PER_PAGE) . ", " . self::ROWS_PER_PAGE;
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($values);
+        $stmt->execute($sqlConditions->values);
         return $stmt->fetchAll();
     }
+
     private function getCountFilterBy(array $filtros): int
     {
-        $sql = $sql = self::SELECT_COUNT . self::FROM;
-        $values = [];
+        $sql = self::SELECT_COUNT . self::FROM;
+        $sqlConditions = $this->generateWhereByFilter($filtros);
+        $sql .= $sqlConditions->whereSQL;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($sqlConditions->values);
+        return $stmt->fetchColumn(0);
+    }
+
+    private function generateWhereByFilter(array $filtros): SQLConditions {
         $condiciones = [];
+        $values = [];
         if (!empty($filtros['username'])) {
             $condiciones[] = "username LIKE :username";
             $values["username"] = "%" . $filtros['username'] . "%";
@@ -130,18 +104,11 @@ class TrabajadorModel extends BaseDbModel
             $values = array_merge($values, $countries);
         }
         if ($condiciones !== []) {
-            $sql .= " WHERE " . implode(" AND ", $condiciones);
+           return new SQLConditions(" WHERE " . implode(" AND ", $condiciones), $values);
+        } else {
+            return new SQLConditions("", []);
         }
-        $sentido = !empty($filtros['sentido']) && $filtros['sentido'] === 'desc' ? 'DESC' : 'ASC';
-        $sql .= " ORDER BY " . self::ORDER_FIELDS[$this->getOrderIndex($filtros) - 1] . " $sentido";
-
-        $currentPage = $this->getCurrentPage($filtros);
-
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($values);
-        return $stmt->fetchColumn(0);
     }
-
     public function getLastPage(array $filtros): int
     {
         return (int)ceil($this->getCountFilterBy($filtros) / self::ROWS_PER_PAGE);
