@@ -15,7 +15,7 @@
                                 <label for="id_rol">Rol:</label>
                                 <select name="id_rol[]" id="id_rol" class="form-control select2" multiple>
                                     <?php foreach ($roles as $rol) : ?>
-                                        <option value="<?php echo $rol['id_rol'] ?>" <?php echo (isset($input['id_rol']) && $rol['id_rol'] == $input['id_rol']) ? 'selected' : ''; ?>><?php echo ucfirst($rol['rol']); ?></option>
+                                        <option value="<?php echo $rol['id_rol'] ?>" <?php echo (isset($input['id_rol']) && in_array($rol['id_rol'], $input['id_rol'])) ? 'selected' : ''; ?>><?php echo ucfirst($rol['rol']); ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <p class="text-error small"></p>
@@ -25,14 +25,14 @@
                             <div class="mb-3">
                                 <label for="email">Email:</label>
                                 <input type="text" class="form-control" name="email" id="email"
-                                       value=""/>
+                                       value="<?php echo $input['email'] ?? ''; ?>"/>
                             </div>
                         </div>
                         <div class="col-12 col-lg-4">
                             <div class="mb-3">
                                 <label for="username">Username:</label>
                                 <input type="text" class="form-control" name="username" id="username"
-                                       value=""/>
+                                       value="<?php echo $input['username'] ?? ''; ?>"/>
                             </div>
                         </div>
                         <div class="col-12 col-lg-4">
@@ -109,32 +109,43 @@
             <div class="card-footer">
                 <nav aria-label="Navegacion por paginas">
                     <ul class="pagination justify-content-center">
-
+                        <?php
+                        if ($currentPage !== 1):
+                            ?>
                             <li class="page-item">
-                                <a class="page-link" href="" aria-label="First">
+                                <a class="page-link" href="<?php echo $baseUrl ?>?page=1 <?php echo ($queryParamsPage !== '' ? "&$queryParamsPage" : '') ?>" aria-label="First">
                                     <span aria-hidden="true">&laquo;</span>
                                     <span class="sr-only">First</span>
                                 </a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" href="" aria-label="Previous">
+                                <a class="page-link" href="<?php echo $baseUrl ?>?page=<?php echo ($currentPage - 1) . ($queryParamsPage !== '' ? "&$queryParamsPage" : '')?>" aria-label="Previous">
                                     <span aria-hidden="true">&lt;</span>
                                     <span class="sr-only">Previous</span>
                                 </a>
                             </li>
-                        <li class="page-item active"><a class="page-link" href="#"></a></li>
+                        <?php
+                        endif;
+                        ?>
+                        <li class="page-item active"><a class="page-link" href="#"><?php echo $currentPage ?></a></li>
+                        <?php
+                        if ($maxPage > $currentPage):
+                            ?>
                             <li class="page-item">
-                                <a class="page-link" href="" aria-label="Next">
+                                <a class="page-link" href="<?php echo $baseUrl ?>?page=<?php echo ($currentPage + 1) . ($queryParamsPage !== '' ? "&$queryParamsPage" : '')?>" aria-label="Next">
                                     <span aria-hidden="true">&gt;</span>
                                     <span class="sr-only">Next</span>
                                 </a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" href="" aria-label="Last">
+                                <a class="page-link" href="<?php echo $baseUrl ?>?page=<?php echo $maxPage . ($queryParamsPage !== '' ? "&$queryParamsPage" : '')?>" aria-label="Last">
                                     <span aria-hidden="true">&raquo;</span>
                                     <span class="sr-only">Last</span>
                                 </a>
                             </li>
+                        <?php
+                        endif;
+                        ?>
                     </ul>
                 </nav>
             </div>

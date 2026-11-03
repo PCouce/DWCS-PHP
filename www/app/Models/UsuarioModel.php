@@ -7,6 +7,9 @@ use Com\Daw2\Libraries\SQLConditions;
 
 class UsuarioModel extends BaseDbModel {
 
+    private const array ORDER_FIELDS = ['t.username', 't.salarioBruto', 't.retencionIRPF', 'nombre_rol', 'country_name'];
+    private const DEFAULT_ORDER_INDEX = 1;
+    private const ROWS_PER_PAGE = 20;
     private const SELECT = "SELECT u.nombre, ar.rol, u.email, u.last_date, u.idioma, u.baja, u.id_rol";
     private const FROM = " FROM usuario_sistema u LEFT JOIN aux_rol ar ON ar.id_rol = u.id_rol";
     private const SELECT_COUNT = "SELECT COUNT(*) as total";
@@ -24,7 +27,14 @@ class UsuarioModel extends BaseDbModel {
 
     public function getCountFilterBy(array $filtros): int
     {
+        $sql = self::SELECT_COUNT . self::FROM;
 
+        $sqlConditions = $this->generateWhereByFilter($filtros);
+        $sql .= $sqlConditions->whereSQL;
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($sqlConditions->values);
+        return $stmt->fetchColumn();
     }
 
     private function generateWhereByFilter(array $filtros): SQLConditions
@@ -56,6 +66,27 @@ class UsuarioModel extends BaseDbModel {
             return new SQLConditions(" WHERE " . implode(" AND ", $condiciones), $values);
         } else {
             return new SQLConditions("", []);
+        }
+    }
+
+    public function getLastPage(array $filtros): int
+    {
+        return (int)ceil($this->getCountFilterBy($filtros) / self::ROWS_PER_PAGE);
+    }
+
+    public function getCurrentPage(array $filtros): int
+    {
+        return !empty($filtros['page']) && filter_var($filtros['page'], FILTER_VALIDATE_INT) ? (int)$filtros['page'] : 1;
+    }
+
+    public function getOrderIndex(array $filtros): int
+    {
+        if (empty($filtros['order'])) {
+            return self::DEFAULT_ORDER_INDEX;
+        } elseif (filter_var($filtros['order'], FILTER_VALIDATE_INT) === false || $filtros['order'] < 1 || $filtros['order'] > count(self::ORDER_FIELDS)) {
+            return self::DEFAULT_ORDER_INDEX;
+        } else {
+            return (int)$filtros['order'];
         }
     }
 }
