@@ -40,26 +40,31 @@
                                 <label for="idioma">Idioma:</label>
                                 <select name="idioma" id="idioma" class="form-control select2">
                                     <option value="">-</option>
-                                    <option value="" >-</option>
+                                    <?php foreach ($idiomas as $idioma) {
+                                        ?>
+                                        <option value="<?php echo $idioma['idioma'] ?>" <?php echo (isset($input['idioma']) && $idioma['idioma'] == $input['idioma']) ? 'selected' : ''; ?>><?php echo ucfirst($idioma['idioma']); ?></option>
+                                        <?php
+                                    }
+                                    ?>
                                 </select>
                                 <p class="text-error small"></p>
                             </div>
                         </div>
                         <div class="col-12 col-lg-4">
                             <div class="mb-3">
-                                <label for="min_retencionIRPF">Rentención:</label>
+                                <label for="ultimo_acceso">Último acceso:</label>
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="text" class="form-control" name="min_retencionIRPF"
-                                               id="min_retencionIRPF"
-                                               value=""
-                                               placeholder="Mínimo"/>
+                                        <input type="date" class="form-control" name="desde"
+                                               id="desde"
+                                               value="<?php echo $input['desde'] ?? '' ?>"
+                                               placeholder="Desde"/>
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" class="form-control" name="max_retencionIRPF"
-                                               id="max_retencionIRPF"
-                                               value=""
-                                               placeholder="Máximo"/>
+                                        <input type="date" class="form-control" name="hasta"
+                                               id="hasta"
+                                               value="<?php echo $input['hasta'] ?? '' ?>"
+                                               placeholder="Hasta"/>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +73,7 @@
                 </div>
                 <div class="card-footer">
                     <div class="col-12 text-right">
-                        <a href=""
+                        <a href="<?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?') ?>"
                            class="btn btn-danger">Reiniciar filtros</a>
                         <input type="submit" value="Aplicar filtros" name="enviar" class="btn btn-primary ml-2"/>
                     </div>
@@ -87,7 +92,20 @@
                 <div id="button_container" class="mb-3"></div>
                 <!--<form action="./?sec=formulario" method="post">                   -->
                 <table id="tabladatos" class="table table-striped">
-                    <tr>
+                    <thead>
+                        <tr>
+                            <?php
+                            require_once '../app/Helpers/form_helper.php';
+                            echo printTableHeader(
+                                    ['Username', 'Rol', 'Email', 'Último Acceso', 'Idioma'],
+                                    $order,
+                                    $input['sentido'] ?? null,
+                                    $queryParams
+                            );
+                            ?>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
                         <tbody>
                         <?php
                         foreach ($usuarios as $usuario) {
@@ -98,12 +116,20 @@
                                 <td><?php echo $usuario['email'] ?></td>
                                 <td><?php echo $usuario['last_date'] ?? 'none'; ?></td>
                                 <td><?php echo $usuario['idioma'] ?></td>
+                                <td>
+                                    <a href="#"
+                                       class="btn btn-success"><i class="fa fa-edit"></i></a>
+                                    <a href="mailto:<?php echo $usuario['email'] ?>"
+                                       class="btn btn-primary"><i class="fa fa-envelope"></i></a>
+                                    <a href="#"
+                                       class="btn btn-danger"><i class="fa fa-trash"></i></a>
+
+                                </td>
                             </tr>
                         <?php
                         }
                         ?>
                         </tbody>
-                    </tr>
                 </table>
             </div>
             <div class="card-footer">

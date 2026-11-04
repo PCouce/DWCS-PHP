@@ -12,7 +12,7 @@ if (!function_exists('printTableHeader')) {
      * @return string thead completo para una tabla
      */
     function printTableHeader(array $cabeceras, int $currentOrder = 1, string $sentido = null, string $queryParams = '', ?string $baseUrl = null): string {
-        $result = '<thead><tr>';
+        $result = '';
         if ($baseUrl === null) {
             $baseUrl = strtok($_SERVER['REQUEST_URI'] ?? '/', '?');
         }
@@ -30,7 +30,6 @@ if (!function_exists('printTableHeader')) {
             $result .= '</th>';
             $i++;
         }
-        $result .= '</tr></thead>';
         return $result;
     }
 }

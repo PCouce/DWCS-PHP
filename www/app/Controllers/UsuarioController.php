@@ -23,6 +23,7 @@ class UsuarioController extends BaseController {
         $data['maxPage'] = $model->getLastPage($_GET);
         $auxUsuarioRolModel = new AuxRolUsuarioModel();
         $data['roles'] = $auxUsuarioRolModel->getAll();
+        $data['idiomas'] = $model->getLanguages($_GET);
         $input = filter_var_array($_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $data['input'] = $input;
 
