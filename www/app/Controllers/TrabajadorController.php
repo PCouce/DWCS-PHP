@@ -44,6 +44,7 @@ class TrabajadorController extends BaseController
             'titulo' => 'Listado trabajadores',
             'breadcrumb' => ['Inicio', 'Trabajadores'],
         );
+
         $model = new TrabajadorModel();
         $data['trabajadores'] = $model->getFilterBy($_GET);
         $data['order'] = $model->getOrderIndex($_GET);

@@ -7,7 +7,7 @@ use Com\Daw2\Libraries\SQLConditions;
 
 class UsuarioModel extends BaseDbModel {
 
-    private const array ORDER_FIELDS = ['u.username', 'ar.rol', 'u.email', 'u.last_date', 'u.idioma'];
+    private const array ORDER_FIELDS = ['u.nombre', 'ar.rol', 'u.email', 'u.last_date', 'u.idioma'];
     private const DEFAULT_ORDER_INDEX = 1;
     private const ROWS_PER_PAGE = 20;
     private const SELECT = "SELECT u.nombre, ar.rol, u.email, u.last_date, u.idioma, u.baja, u.id_rol";
