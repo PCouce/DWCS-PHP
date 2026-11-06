@@ -230,6 +230,14 @@ class FrontController
             },
             'get'
         );
+        Route::add(
+            '/usuarios-sistema',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\UsuariosSistemaController();
+                $controlador->index();
+            },
+            'get'
+        );
         Route::pathNotFound(
             function () {
                 $controller = new \Com\Daw2\Controllers\ErroresController();
