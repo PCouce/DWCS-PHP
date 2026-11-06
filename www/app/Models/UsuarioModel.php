@@ -69,6 +69,14 @@ class UsuarioModel extends BaseDbModel {
             $condiciones[] =  "u.id_rol IN (" . implode(", ", $claves) . ")";
             $values = array_merge($values, $roles);
         }
+        if (!empty($filtros['desde'])) {
+            $condiciones[] = "last_date >= :desde";
+            $values["desde"] = date("d-m-Y H:i:s", strtotime($filtros['desde']));
+        }
+        if (!empty($filtros['hasta'])) {
+            $condiciones[] = "last_date <= :hasta";
+            $values["hasta"] = date("d-m-Y H:i:s", strtotime($filtros['hasta']));
+        }
 
         if ($condiciones !== []) {
             return new SQLConditions(" WHERE " . implode(" AND ", $condiciones), $values);

@@ -42,7 +42,7 @@
                                     <option value="">-</option>
                                     <?php foreach ($idiomas as $idioma) {
                                         ?>
-                                        <option value="<?php echo $idioma['idioma'] ?>" <?php echo (isset($input['idioma']) && $idioma['idioma'] == $input['idioma']) ? 'selected' : ''; ?>><?php echo ucfirst($idioma['idioma']); ?></option>
+                                        <option value="<?php echo $idioma['idioma'] ?>" <?php echo (isset($input['idioma']) && $idioma['idioma'] == $input['idioma']) ? 'selected' : ''; ?>><?php echo $idioma['idioma']; ?></option>
                                         <?php
                                     }
                                     ?>
@@ -114,7 +114,7 @@
                                 <td><?php echo $usuario['nombre'] ?></td>
                                 <td><?php echo $usuario['rol'] ?></td>
                                 <td><?php echo $usuario['email'] ?></td>
-                                <td><?php echo $usuario['last_date'] ?? 'none'; ?></td>
+                                <td><?php echo $usuario['last_date'] ? date("d/m/Y H:i:s", strtotime($usuario['last_date'])) : 'none'; ?></td>
                                 <td><?php echo $usuario['idioma'] ?></td>
                                 <td>
                                     <a href="#"
