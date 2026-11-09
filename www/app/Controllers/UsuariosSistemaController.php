@@ -22,8 +22,10 @@ class UsuariosSistemaController extends BaseController
         $data['usuarios'] = $model->getFilterBy($_GET);
         $data['maxPage'] = $model->getMaxPage($_GET);
         $data['currentPage'] = $model->getCurrentPage($_GET);
+
         $data['currentOrder'] = $model->getIntOrder($_GET);
         $data['sentido'] = $model->getCurrentSentido($_GET);
+
         $data['cabeceras'] = ['Nombre', 'Rol', 'Email', 'Últ. acceso', 'Idioma'];
         $data['idiomas'] = self::IDIOMAS;
         $rolesModel = new AuxRolModel();

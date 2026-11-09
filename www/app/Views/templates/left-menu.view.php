@@ -11,7 +11,7 @@
           </li> 
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item <?php echo (in_array(strtok($_SERVER['REQUEST_URI'] ?? '/', '?') , [$_ENV['host.folder'] . 'demo-proveedores', $_ENV['host.folder'] . 'trabajadores', $_ENV['host.folder'] . 'usuarios'])) ? 'menu-open' : '';?>">
+          <li class="nav-item <?php echo (in_array(strtok($_SERVER['REQUEST_URI'] ?? '/', '?') , [$_ENV['host.folder'] . 'demo-proveedores', $_ENV['host.folder'] . 'trabajadores', $_ENV['host.folder'] . 'usuarios-sistema'])) ? 'menu-open' : '';?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -27,9 +27,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo $_ENV['host.folder'] ?>usuarios" class="nav-link <?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?') === $_ENV['host.folder'] . 'usuarios' ? 'active' : ''; ?>">
-                        <i class="fas fa-briefcase nav-icon"></i>
-                        <p>Usuarios</p>
+                    <a href="<?php echo $_ENV['host.folder'] ?>usuarios-sistema" class="nav-link <?php echo strtok($_SERVER['REQUEST_URI'] ?? '/', '?') === $_ENV['host.folder'] . 'usuarios-sistema' ? 'active' : ''; ?>">
+                        <i class="fas fa-users nav-icon"></i>
+                        <p>Usuarios sistema</p>
                     </a>
                 </li>
               <li class="nav-item">
@@ -40,74 +40,25 @@
               </li>              
             </ul>
           </li>
-
-            <li class="nav-item <?php echo (in_array($_SERVER['REQUEST_URI'], [$_ENV['host.folder'] . 'ejercicios1-operadores'])) ? 'menu-open' : '';?>">
+            <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-book"></i>
+                    <i class="nav-icon fas fa-code"></i>
                     <p>
-                        Ejercicios Operadores
+                        Ej. operadores
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
                     <?php
-                    for ($i = 1 ; $i < 11; $i++):
+                    for ($i = 1; $i < 11; $i++):
                     ?>
                     <li class="nav-item">
-                        <a href="<?php echo $_ENV['host.folder'] ?>ejercicio<?php echo $i ?>-operadores" class="nav-link <?php echo $_SERVER['REQUEST_URI'] === $_ENV['host.folder'] . "ejercicio{$i}-operadores" ? 'active' : ''; ?>">
-                            <i class="fas fa-code nav-icon"></i>
-                            <p>Ejercicio <?php echo $i ?></p>
+                        <a href="<?php echo $_ENV['host.folder'] ?>ejercicio<?php echo $i; ?>-operadores" class="nav-link <?php echo $_SERVER['REQUEST_URI'] === $_ENV['host.folder'] . "ejercicio{$i}-operadores" ? 'active' : ''; ?>">
+                            <i class="fas fa-equals nav-icon"></i>
+                            <p>Ejercicio <?php echo $i; ?></p>
                         </a>
                     </li>
-                    <?php
-                    endfor;
-                    ?>
-                </ul>
-            </li>
-            <li class="nav-item <?php echo (in_array($_SERVER['REQUEST_URI'], [$_ENV['host.folder'] . 'ejercicios1-decisiones'])) ? 'menu-open' : '';?>">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-book"></i>
-                    <p>
-                        Ejercicios Decisiones
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <?php
-                    for ($i = 1 ; $i < 8; $i++):
-                        ?>
-                        <li class="nav-item">
-                            <a href="<?php echo $_ENV['host.folder'] ?>ejercicio<?php echo $i ?>-decisiones" class="nav-link <?php echo $_SERVER['REQUEST_URI'] === $_ENV['host.folder'] . "ejercicio{$i}-decisiones" ? 'active' : ''; ?>">
-                                <i class="fas fa-code nav-icon"></i>
-                                <p>Ejercicio <?php echo $i ?></p>
-                            </a>
-                        </li>
-                    <?php
-                    endfor;
-                    ?>
-                </ul>
-            </li>
-            <li class="nav-item <?php echo (in_array($_SERVER['REQUEST_URI'], [$_ENV['host.folder'] . 'ejercicios1-decisiones'])) ? 'menu-open' : '';?>">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-book"></i>
-                    <p>
-                        Ejercicios Iterativos
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <?php
-                    for ($i = 1 ; $i < 8; $i++):
-                        ?>
-                        <li class="nav-item">
-                            <a href="<?php echo $_ENV['host.folder'] ?>iterativas<?php echo $i ?>" class="nav-link <?php echo $_SERVER['REQUEST_URI'] === $_ENV['host.folder'] . "iterativas{$i}" ? 'active' : ''; ?>">
-                                <i class="fas fa-code nav-icon"></i>
-                                <p>Ejercicio <?php echo $i ?></p>
-                            </a>
-                        </li>
-                    <?php
-                    endfor;
-                    ?>
+                    <?php endfor; ?>
                 </ul>
             </li>
             <li class="nav-item">

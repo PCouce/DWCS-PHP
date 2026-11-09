@@ -93,9 +93,6 @@ class UsuariosSistemaModel extends BaseDbModel
             $values['idioma'] = $filtros['idioma'];
         }
         if(!empty($filtros['last_date_from'])){
-            //Checkearemos que es una fecha válida antes de filtrar
-        }
-        if(!empty($filtros['last_date_from'])){
             $fromdate = \DateTimeImmutable::createFromFormat('d/m/Y H:i:s', $filtros['last_date_from']);
             if ($fromdate !== false) {
                 $condiciones[] = 'u.last_date >= :last_date_from';

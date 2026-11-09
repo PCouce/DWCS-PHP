@@ -135,7 +135,7 @@ declare(strict_types=1);
                             <td><?php echo $usuario['nombre'] ?></td>
                             <td><?php echo $usuario['rol'] ?></td>
                             <td><?php echo $usuario['email'] ?></td>
-                            <td><?php echo $usuario['last_date'] ?></td>
+                            <td><?php echo !empty($usuario['last_date']) ? \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $usuario['last_date'])->format('d/m/y H:i:s') : '-'?></td>
                             <td><?php echo $usuario['idioma']; ?></td>
                             <td>
                                 <a href="mailto: <?php echo $usuario['email'] ?>" target="_blank" class="btn btn-info"
