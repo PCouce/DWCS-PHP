@@ -108,16 +108,19 @@
                 <div id="button_container" class="mb-3"></div>
                 <!--<form action="./?sec=formulario" method="post">                   -->
                 <table id="tabladatos" class="table table-striped">
+                    <thead>
                     <tr>
                         <?php
                         require_once '../app/Helpers/form_helper.php';
                         echo printTableHeader(
-                            ['Username', 'Salario Bruto', 'Retención', 'Rol', 'País'],
+                            ['Username', 'Salario Bruto', 'Retención', 'Rol', 'País', ''],
                             $order,
                             $input['sentido'] ?? null,
                             $queryParams
                         );
                         ?>
+                    </tr>
+                    </thead>
                     <tbody>
                     <?php
                     foreach ($trabajadores as $trabajador) {
@@ -128,6 +131,12 @@
                             <td><?php echo $trabajador['retencionIRPF'] ?>%</td>
                             <td><?php echo $trabajador['nombre_rol'] ?></td>
                             <td><?php echo $trabajador['country_name'] ?></td>
+                            <td>
+                                <a href="usuarios-sistema/edit/<?php echo $trabajador['username'] ?>"
+                                   class="btn btn-success ml-2"><i class="fas fa-edit"></i></a>
+                                <a href="usuarios-sistema/delete/<?php echo $trabajador['username'] ?>"
+                                   class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
                         </tr>
                         <?php
                     }

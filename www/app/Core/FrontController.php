@@ -355,10 +355,10 @@ class FrontController
         );
 
         Route::add(
-            '/usuarios',
+            '/usuarios-sistema',
             function () {
-                $controlador = new \Com\Daw2\Controllers\UsuarioController();
-                $controlador->getUsuarios();
+                $controlador = new \Com\Daw2\Controllers\UsuariosSistemaController();
+                $controlador->index();
             },
             'get'
         );
