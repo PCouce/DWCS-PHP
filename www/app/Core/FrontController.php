@@ -355,6 +355,16 @@ class FrontController
         );
 
         Route::add(
+            '/new',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->insertTrabajador();
+            },
+            'get'
+        );
+
+
+        Route::add(
             '/usuarios-sistema',
             function () {
                 $controlador = new \Com\Daw2\Controllers\UsuariosSistemaController();
