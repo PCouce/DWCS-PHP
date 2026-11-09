@@ -32,7 +32,12 @@ class UsuariosSistemaController extends BaseController
         unset($getOrder['order']);
         unset($getOrder['sentido']);
         unset($getOrder['page']);
+        $getPage = $_GET;
+        unset($getPage['page']);
+        $data['queryPage'] = http_build_query($getPage);
         $data['queryParams'] = http_build_query($getOrder);
+        $data['input'] = filter_var_array($_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $data['js'] = ['assets/js/pages/usuarios-sistema.js'];
         $this->view->showViews(array('templates/header.view.php', 'usuarios-sistema.view.php', 'templates/footer.view.php'), $data);
     }
 

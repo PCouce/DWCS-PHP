@@ -76,8 +76,9 @@ class UsuariosSistemaModel extends BaseDbModel
             $i = 1;
             foreach ($filtros['id_rol'] as $id_rol) {
                 $values[":id_rol{$i}"] = $id_rol;
+                $i++;
             }
-            $condiciones[] = 'id_rol IN (' . implode(',', $values['id_rol']) . ')';
+            $condiciones[] = 'u.id_rol IN (' . implode(',', array_keys($values)) . ')';
         }
         if (!empty($filtros['nombre'])) {
             $condiciones[] = 'nombre like :nombre';
@@ -93,6 +94,20 @@ class UsuariosSistemaModel extends BaseDbModel
         }
         if(!empty($filtros['last_date_from'])){
             //Checkearemos que es una fecha válida antes de filtrar
+        }
+        if(!empty($filtros['last_date_from'])){
+            $fromdate = \DateTimeImmutable::createFromFormat('d/m/Y H:i:s', $filtros['last_date_from']);
+            if ($fromdate !== false) {
+                $condiciones[] = 'u.last_date >= :last_date_from';
+                $values['last_date_from'] = $fromdate->format('Y-m-d H:i:s');
+            }
+        }
+        if(!empty($filtros['last_date_to'])){
+            $toDate = \DateTimeImmutable::createFromFormat('d/m/Y H:i:s', $filtros['last_date_to']);
+            if ($toDate !== false) {
+                $condiciones[] = 'u.last_date >= :last_date_to';
+                $values['last_date_to'] = $toDate->format('Y-m-d H:i:s');
+            }
         }
         $where = ($condiciones === []) ? '' : ' WHERE ' . implode(' AND ', $condiciones);
         return new SQLConditions($where, $values);
