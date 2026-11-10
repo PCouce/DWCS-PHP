@@ -129,4 +129,9 @@ class TrabajadorModel extends BaseDbModel
             return (int)$filtros['order'];
         }
     }
+
+    public function insertTrabajador(array $data): void
+    {
+
+    }
 }

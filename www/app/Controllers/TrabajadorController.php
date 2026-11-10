@@ -70,8 +70,25 @@ class TrabajadorController extends BaseController
         $this->view->showViews(array('templates/header.view.php', 'trabajadores.view.php', 'templates/footer.view.php'), $data);
     }
 
-    public function insertTrabajador(array $datos): void
+    public function newTrabajador(): void
     {
+        $data = array(
+            'titulo' => 'Nuevo trabajador',
+            'breadcrumb' => ['Inicio', 'Trabajadores'],
+        );
 
+        $this->view->showViews(array('templates/header.view.php', 'nuevo-trabajador.view.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function postNewTrabajador(): void
+    {
+        $data = array(
+            'titulo' => 'Nuevo trabajador',
+            'breadcrumb' => ['Inicio', 'Trabajadores'],
+        );
+
+        $model = new TrabajadorModel();
+
+        $this->view->showViews(array('templates/header.view.php', 'nuevo-trabajador.view.php', 'templates/footer.view.php'), $data);
     }
 }

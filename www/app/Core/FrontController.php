@@ -355,12 +355,21 @@ class FrontController
         );
 
         Route::add(
-            '/new',
+            '/trabajadores/new',
             function () {
                 $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->insertTrabajador();
+                $controlador->newTrabajador();
             },
             'get'
+        );
+
+        Route::add(
+            '/trabajadores/new',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->postNewTrabajador();
+            },
+            'post'
         );
 
 
