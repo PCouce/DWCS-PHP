@@ -130,8 +130,19 @@ class TrabajadorModel extends BaseDbModel
         }
     }
 
-    public function insertTrabajador(array $data): void
+    public function insertTrabajador(array $data): bool
     {
+        $sql = "INSERT INTO trabajadores (username, salarioBruto, retencionIRPF, id_rol, id_country, activo) 
+                VALUES (:username, :salarioBruto, :retencionIRPF, :id_rol, :id_country, :activo)";
 
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([
+            'username' => $data['nombre'] ?? '',
+            'salarioBruto' => !empty($data['salario_bruto']) ? (float)$data['salario_bruto'] : 0.00,
+            'retencionIRPF' => !empty($data['retencion']) ? (float)$data['retencion'] : 0.00,
+            'id_rol' => !empty($data['id_rol']) ? (int)$data['id_rol'] : null,
+            'id_country' => !empty($data['id_country']) ? (int)$data['id_country'] : null,
+            'activo' => isset($data['activo']) ? 1 : 0
+        ]);
     }
 }
