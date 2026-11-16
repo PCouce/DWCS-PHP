@@ -16,6 +16,7 @@ class TrabajadorModel extends BaseDbModel
     private const SELECT = "SELECT t.*, art.nombre_rol, ac.country_name";
     private const SELECT_COUNT = "SELECT COUNT(*) as total";
     private const string FROM = " FROM trabajadores t LEFT JOIN aux_rol_trabajador art ON art.id_rol = t.id_rol LEFT JOIN aux_countries ac ON ac.id = t.id_country";
+    private array $allowedFields = ['username', 'salarioBruto', 'retencionIRPF', 'activo', 'id_rol', 'id_country'];
     public function getTrabajadores(): array
     {
         $trabajadores = $this->pdo->query('SELECT * FROM trabajadores')->fetchAll();
@@ -130,19 +131,22 @@ class TrabajadorModel extends BaseDbModel
         }
     }
 
-    public function insertTrabajador(array $data): bool
+    public function find(string $username): array|false
     {
-        $sql = "INSERT INTO trabajadores (username, salarioBruto, retencionIRPF, id_rol, id_country, activo) 
-                VALUES (:username, :salarioBruto, :retencionIRPF, :id_rol, :id_country, :activo)";
-
+        $sql = self::SELECT . self::FROM . " WHERE username = :username";
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([
-            'username' => $data['nombre'] ?? '',
-            'salarioBruto' => !empty($data['salario_bruto']) ? (float)$data['salario_bruto'] : 0.00,
-            'retencionIRPF' => !empty($data['retencion']) ? (float)$data['retencion'] : 0.00,
-            'id_rol' => !empty($data['id_rol']) ? (int)$data['id_rol'] : null,
-            'id_country' => !empty($data['id_country']) ? (int)$data['id_country'] : null,
-            'activo' => isset($data['activo']) ? 1 : 0
-        ]);
+        $stmt->execute(['username' => $username]);
+        return $stmt->fetch();
+    }
+
+    public function insert(array $datos): bool
+    {
+
+        $sql = "insert into trabajadores (username, salarioBruto, retencionIRPF, activo, id_rol, id_country)
+                values (:username, :salarioBruto, :retencionIRPF, :activo, :id_rol, :id_country)";
+        $insertData = array_filter($datos, fn($key) => in_array($key, $this->allowedFields), ARRAY_FILTER_USE_KEY);
+        $insertData['activo'] = !empty($datos['activo']) ? 1 : 0;
+        $stmt = $this->pdo->prepare($sql);
+        return ($stmt->execute($insertData) && $stmt->rowCount() === 1);
     }
 }
