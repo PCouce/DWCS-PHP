@@ -106,7 +106,7 @@
                 </div>
                 <div class="col-6">
                     <div class="m-0 font-weight-bold justify-content-end">
-                        <a href="/trabajadores/new/" class="btn btn-primary ml-1 float-right"><i class="fas fa-plus-circle"></i> Nuevo Trabajador</a>
+                        <a href="/trabajadores/new" class="btn btn-primary ml-1 float-right"><i class="fas fa-plus-circle"></i> Nuevo Trabajador</a>
                     </div>
                 </div>
             </div>
