@@ -135,7 +135,7 @@
                         <td><?php echo $trabajador['username'] ?></td>
                         <td><?php echo $trabajador['salarioBruto'] ?></td>
                         <td><?php echo $trabajador['retencionIRPF'] ?>%</td>
-                        <td><?php echo $trabajador['nombre_rol'] ?></td>
+                        <td><?php echo mb_convert_case($trabajador['nombre_rol'], MB_CASE_TITLE_SIMPLE, "UTF-8"); ?></td>
                         <td><?php echo $trabajador['country_name'] ?></td>
                         <td>
                             <a href="trabajadores/edit/<?php echo $trabajador['username'] ?>"
