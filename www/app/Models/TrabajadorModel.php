@@ -141,7 +141,6 @@ class TrabajadorModel extends BaseDbModel
 
     public function insert(array $datos): bool
     {
-
         $sql = "insert into trabajadores (username, salarioBruto, retencionIRPF, activo, id_rol, id_country)
                 values (:username, :salarioBruto, :retencionIRPF, :activo, :id_rol, :id_country)";
         $insertData = array_filter($datos, fn($key) => in_array($key, $this->allowedFields), ARRAY_FILTER_USE_KEY);
@@ -149,4 +148,17 @@ class TrabajadorModel extends BaseDbModel
         $stmt = $this->pdo->prepare($sql);
         return ($stmt->execute($insertData) && $stmt->rowCount() === 1);
     }
+
+    public function update(array $datos): bool
+    {
+        $sql = "update trabajadores set (salarioBruto, retencionIRPF, activo, id_rol, id_country)
+                values (:salarioBruto, :retencionIRPF, :activo, :id_rol, :id_country)
+                where username = :username";
+        $insertData = array_filter($datos, fn($key) => in_array($key, $this->allowedFields), ARRAY_FILTER_USE_KEY);
+        $insertData['activo'] = !empty($datos['activo']) ? 1 : 0;
+        $stmt = $this->pdo->prepare($sql);
+        return ($stmt->execute($insertData) && $stmt->rowCount() === 1);
+    }
+
+
 }

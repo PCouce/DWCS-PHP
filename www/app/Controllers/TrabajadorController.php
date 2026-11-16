@@ -164,4 +164,44 @@ class TrabajadorController extends BaseController
         return $errores;
     }
 
+    public function edit(string $username, array $input = [], array $errores = []): void
+    {
+        $data = array(
+            'titulo' => 'Modificar trabajador',
+            'breadcrumb' => ['Inicio', 'Trabajadores', 'Modificar'],
+            'errors' => $errores,
+        );
+
+        $model = new TrabajadorModel();
+        $data['input'] = $model->getFilterBy(['username' => $username])[0];
+        $auxTrabajadorRolModel = new AuxRolTrabajadorModel();
+        $data['roles'] = $auxTrabajadorRolModel->getAll();
+        $countriesModel = new AuxCountriesModel();
+        $data['countries'] = $countriesModel->getAll();
+        $this->view->showViews(array('templates/header.view.php', 'trabajadores.edit.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function doEdit(): void
+    {
+        $errores = $this->checkTrabajadorForm($_POST);
+        if ($errores !== []) {
+            $this->edit(
+                filter_var_array($_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                $errores
+            );
+        } else {
+            $trabajadoresModel = new TrabajadorModel();
+            $res = $trabajadoresModel->update($_POST);
+            if ($res !== true) {
+                echo 'Error';
+            } else {
+                if (!isset($_POST['insertar_otro'])) {
+                    header('Location: /trabajadores');
+                } else {
+                    header('Location: /trabajadores/new');
+                }
+            }
+        }
+    }
+
 }
