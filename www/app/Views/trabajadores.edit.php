@@ -98,10 +98,16 @@ declare(strict_types=1);
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="form-group">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="activo">
-                            <label class="custom-control-label" for="activo">Usuario activo</label>
+                        <label for="activo"></label>
+                        <div class="d-flex align-items-center" style="">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input"
+                                       name="activo" id="activo" value="1"
+                                        <?php echo !empty($input['activo']) ? 'checked' : ''; ?>>
+                                <label class="custom-control-label" for="activo">Usuario activo</label>
+                            </div>
                         </div>
+                        <p class="text-danger small"><?php echo $errors['activo'] ?? ''; ?></p>
                     </div>
                 </div>
             </div>
