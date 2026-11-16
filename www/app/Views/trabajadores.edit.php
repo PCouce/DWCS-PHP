@@ -116,6 +116,7 @@ declare(strict_types=1);
             <div class="col-12 text-right">
                 <a href="/trabajadores" class="btn btn-danger">Cancelar</a>
                 <input type="submit" value="Guardar" class="btn btn-primary ml-2"/>
+                <input type="submit" name="insertar_otro" value="Guardar e insertar otro" class="btn btn-primary ml-2"/>
             </div>
         </div>
     </form>
