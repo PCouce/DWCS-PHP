@@ -169,11 +169,12 @@ class TrabajadorController extends BaseController
         $data = array(
             'titulo' => 'Modificar trabajador',
             'breadcrumb' => ['Inicio', 'Trabajadores', 'Modificar'],
+            'input' => $input,
             'errors' => $errores,
         );
 
         $model = new TrabajadorModel();
-        $data['input'] = $model->getFilterBy(['username' => $username])[0];
+        $data['input'] = $model->find($username);
         $auxTrabajadorRolModel = new AuxRolTrabajadorModel();
         $data['roles'] = $auxTrabajadorRolModel->getAll();
         $countriesModel = new AuxCountriesModel();
@@ -181,11 +182,54 @@ class TrabajadorController extends BaseController
         $this->view->showViews(array('templates/header.view.php', 'trabajadores.edit.php', 'templates/footer.view.php'), $data);
     }
 
-    public function doEdit(): void
+    public function doEdit(string $username): void
+    {
+        //$errores = $this->checkTrabajadorForm($_POST);
+        //if ($errores !== []) {
+        //    $this->edit(
+        //        $username,
+        //        filter_var_array($_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+        //        $errores
+        //    );
+        //} else {
+            $trabajadoresModel = new TrabajadorModel();
+            $res = $trabajadoresModel->update($_POST);
+            if ($res !== true) {
+                echo 'Error';
+            } else {
+                if (!isset($_POST['insertar_otro'])) {
+                    header('Location: /trabajadores');
+                } else {
+                    header('Location: /trabajadores/new');
+                }
+            }
+        //}
+    }
+
+    public function delete(string $username, array $input = [], array $errores = []): void
+    {
+        $data = array(
+            'titulo' => 'Modificar trabajador',
+            'breadcrumb' => ['Inicio', 'Trabajadores', 'Modificar'],
+            'input' => $input,
+            'errors' => $errores,
+        );
+
+        $model = new TrabajadorModel();
+        $data['input'] = $model->find($username);
+        $auxTrabajadorRolModel = new AuxRolTrabajadorModel();
+        $data['roles'] = $auxTrabajadorRolModel->getAll();
+        $countriesModel = new AuxCountriesModel();
+        $data['countries'] = $countriesModel->getAll();
+        $this->view->showViews(array('templates/header.view.php', 'trabajadores.edit.php', 'templates/footer.view.php'), $data);
+    }
+
+    public function doDelete(string $username): void
     {
         $errores = $this->checkTrabajadorForm($_POST);
         if ($errores !== []) {
             $this->edit(
+                $username,
                 filter_var_array($_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS),
                 $errores
             );
@@ -203,5 +247,4 @@ class TrabajadorController extends BaseController
             }
         }
     }
-
 }
