@@ -358,25 +358,6 @@ class FrontController
             '/trabajadores/new',
             function () {
                 $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->newTrabajador();
-            },
-            'get'
-        );
-
-        Route::add(
-            '/trabajadores/new',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->postNewTrabajador();
-            },
-            'post'
-        );
-
-
-        Route::add(
-            '/trabajadores/new',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
                 $controlador->new();
             },
             'get'
@@ -412,14 +393,6 @@ class FrontController
                 $controlador->delete($username);
             },
             'get'
-        );
-        Route::add(
-            '/trabajadores/delete/([\p{L}0-9_]{4,50})',
-            function ($username) {
-                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->doDelete($username);
-            },
-            'post'
         );
 
         Route::add(
