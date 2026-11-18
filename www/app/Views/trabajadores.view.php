@@ -71,15 +71,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-6">
+                        <div class="col-12 col-lg-4">
                             <div class="form-group">
                                 <label for="id_country">País:</label>
                                 <select name="id_country[]" id="id_country" class="form-control select2" multiple>
-                                    <?php foreach ($countries as $country) {
+                                    <?php foreach ($countries as $country):
                                         ?>
                                         <option value="<?php echo $country['id_country'] ?>" <?php echo (isset($input['id_country']) && in_array($country['id_country'], $input['id_country'])) ? 'selected' : ''; ?>><?php echo ucfirst($country['country_name']); ?></option>
                                         <?php
-                                    }
+                                    endforeach;
                                     ?>
                                 </select>
                                 <p class="text-error small"><?php echo $errors['id_country'] ?? ''; ?></p>
@@ -127,9 +127,7 @@
                         ?>
                         <tbody>
                         <?php
-                        foreach ($trabajadores
-
-                        as $trabajador) {
+                        foreach ($trabajadores as $trabajador):
                         ?>
                     <tr class="<?php echo $trabajador['activo'] ? '' : 'table-danger'; ?>">
                         <td><?php echo $trabajador['username'] ?></td>
@@ -145,7 +143,7 @@
                         </td>
                     </tr>
                     <?php
-                    }
+                    endforeach;
                     ?>
                     </tbody>
                 </table>

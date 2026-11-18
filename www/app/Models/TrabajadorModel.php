@@ -149,4 +149,21 @@ class TrabajadorModel extends BaseDbModel
         $stmt = $this->pdo->prepare($sql);
         return ($stmt->execute($insertData) && $stmt->rowCount() === 1);
     }
+
+    public function edit(string $username, array $datos): bool
+    {
+        $sql = "UPDATE trabajadores SET salarioBruto=:salarioBruto, retencionIRPF=:retencionIRPF, activo=:activo, id_rol=:id_rol, id_country=:id_country WHERE username=:username";
+        $updateData = array_filter($datos, fn($key) => in_array($key, $this->allowedFields), ARRAY_FILTER_USE_KEY);
+        $updateData['activo'] = !empty($datos['activo']) ? 1 : 0;
+        $updateData['username'] = $username;
+        $stmt = $this->pdo->prepare($sql);
+        return ($stmt->execute($updateData));
+    }
+
+    public function delete(string $username): bool
+    {
+        $sql = "DELETE FROM trabajadores WHERE username = :username";
+        $stmt = $this->pdo->prepare($sql);
+        return ($stmt->execute(['username' => $username]) && $stmt->rowCount() === 1);
+    }
 }

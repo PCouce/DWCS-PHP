@@ -20,6 +20,7 @@ declare(strict_types=1);
                                echo $input['username'] ?? ''; ?>"
                                maxlength="50"
                                placeholder="MyUsername"
+                               <?= $edicion ? 'readonly' : '' ?>
                         />
                         <p class="text-danger small">
                             <?php
@@ -34,7 +35,7 @@ declare(strict_types=1);
                         <input type="text" class="form-control"
                                name="salarioBruto" id="salarioBruto"
                                value="<?php
-                               echo isset($input['salarioBruto']) ? str_replace('.', ',', $input[ 'salarioBruto']) : ''; ?>"
+                               echo $input['salarioBruto'] ?? ''; ?>"
                                maxlength="20"
                                placeholder="3456,60"
                         />

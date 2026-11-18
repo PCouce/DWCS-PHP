@@ -246,6 +246,30 @@ class FrontController
             },
             'post'
         );
+        Route::add(
+            '/trabajadores/edit/([\p{L}0-9_]{4,50})',
+            function (string $username) {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->edit($username);
+            },
+            'get'
+        );
+        Route::add(
+            '/trabajadores/edit/([\p{L}0-9_]{4,50})',
+            function (string $username) {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->doEdit($username);
+            },
+            'post'
+        );
+        Route::add(
+            '/trabajadores/delete/([\p{L}0-9_]{4,50})',
+            function (string $username) {
+                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
+                $controlador->delete($username);
+            },
+            'get'
+        );
 
         Route::add(
             '/usuarios-sistema',
