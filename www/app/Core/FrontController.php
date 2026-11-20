@@ -2,10 +2,6 @@
 
 namespace Com\Daw2\Core;
 
-use Com\Daw2\Controllers\CategoriaController;
-use Com\Daw2\Controllers\EjerciciosController;
-use Com\Daw2\Controllers\PreferenciasController;
-use Com\Daw2\Controllers\UsuarioSistemaController;
 use Steampixel\Route;
 
 class FrontController
@@ -25,7 +21,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio1Strings();
-
             },
             'get'
         );
@@ -34,7 +29,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio1operadores();
-
             },
             'get'
         );
@@ -43,7 +37,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio2operadores();
-
             },
             'get'
         );
@@ -53,7 +46,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio3operadores();
-
             },
             'get'
         );
@@ -63,7 +55,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio4operadores();
-
             },
             'get'
         );
@@ -73,7 +64,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio5operadores();
-
             },
             'get'
         );
@@ -82,7 +72,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio6operadores();
-
             },
             'get'
         );
@@ -91,7 +80,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio7operadores();
-
             },
             'get'
         );
@@ -101,7 +89,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio8operadores();
-
             },
             'get'
         );
@@ -111,7 +98,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio9operadores();
-
             },
             'get'
         );
@@ -121,7 +107,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
                 $controlador->ejercicio5Decision();
-
             },
             'get'
         );
@@ -131,7 +116,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
                 $controlador->ejercicio1();
-
             },
             'get'
         );
@@ -149,7 +133,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
                 $controlador->ejercicio2();
-
             },
             'get'
         );
@@ -167,7 +150,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
                 $controlador->ejercicio8();
-
             },
             'get'
         );
@@ -185,7 +167,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
                 $controlador->ejercicio9();
-
             },
             'get'
         );
