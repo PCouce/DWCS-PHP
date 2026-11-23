@@ -403,6 +403,22 @@ class FrontController
             },
             'get'
         );
+        Route::add(
+            '/preferencias',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\PreferenciasController();
+                $controlador->showPreferencias();
+            },
+            'get'
+        );
+        Route::add(
+            '/preferencias',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\PreferenciasController();
+                $controlador->doPreferencias();
+            },
+            'post'
+        );
         Route::pathNotFound(
             function () {
                 $controller = new \Com\Daw2\Controllers\ErroresController();
