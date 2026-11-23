@@ -95,7 +95,7 @@
                 </div>
                 <div class="info">
                     <a href="#"
-                       class="d-block"><?php echo $_SESSION['usuario']['nombre'] ?? 'Usuario'; ?></a>
+                       class="d-block"><?php echo $_SESSION['usuario'] ?? 'Usuario'; ?></a>
                 </div>
             </div>
             <?php

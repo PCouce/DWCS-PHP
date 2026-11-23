@@ -8,6 +8,8 @@ class FrontController
 {
     public static function main()
     {
+        session_start();
+        //$_SESSION['usuario'] = 'Alba';
         Route::add(
             '/',
             function () {
@@ -15,6 +17,30 @@ class FrontController
                 $controlador->index();
             },
             'get'
+        );
+        Route::add(
+            '/login',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\UsuariosSistemaController();
+                $controlador->login();
+            },
+            'get'
+        );
+        Route::add(
+            '/preferencias',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\PreferenciasController();
+                $controlador->showPreferencias();
+            },
+            'get'
+        );
+        Route::add(
+            '/preferencias',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\PreferenciasController();
+                $controlador->savePreferencias();
+            },
+            'post'
         );
         Route::add(
             '/ejercicio1-strings',
