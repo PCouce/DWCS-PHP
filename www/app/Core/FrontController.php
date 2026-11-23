@@ -2,16 +2,14 @@
 
 namespace Com\Daw2\Core;
 
-use Com\Daw2\Controllers\CategoriaController;
-use Com\Daw2\Controllers\EjerciciosController;
-use Com\Daw2\Controllers\PreferenciasController;
-use Com\Daw2\Controllers\UsuarioSistemaController;
 use Steampixel\Route;
 
 class FrontController
 {
     public static function main()
     {
+        session_start();
+        //$_SESSION['usuario'] = 'Alba';
         Route::add(
             '/',
             function () {
@@ -21,11 +19,34 @@ class FrontController
             'get'
         );
         Route::add(
+            '/login',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\UsuariosSistemaController();
+                $controlador->login();
+            },
+            'get'
+        );
+        Route::add(
+            '/preferencias',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\PreferenciasController();
+                $controlador->showPreferencias();
+            },
+            'get'
+        );
+        Route::add(
+            '/preferencias',
+            function () {
+                $controlador = new \Com\Daw2\Controllers\PreferenciasController();
+                $controlador->savePreferencias();
+            },
+            'post'
+        );
+        Route::add(
             '/ejercicio1-strings',
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio1Strings();
-
             },
             'get'
         );
@@ -34,7 +55,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio1operadores();
-
             },
             'get'
         );
@@ -43,7 +63,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio2operadores();
-
             },
             'get'
         );
@@ -53,7 +72,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio3operadores();
-
             },
             'get'
         );
@@ -63,7 +81,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio4operadores();
-
             },
             'get'
         );
@@ -73,7 +90,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio5operadores();
-
             },
             'get'
         );
@@ -82,7 +98,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio6operadores();
-
             },
             'get'
         );
@@ -91,7 +106,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio7operadores();
-
             },
             'get'
         );
@@ -101,7 +115,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio8operadores();
-
             },
             'get'
         );
@@ -111,7 +124,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosController();
                 $controlador->ejercicio9operadores();
-
             },
             'get'
         );
@@ -121,7 +133,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\EjerciciosDecisionController();
                 $controlador->ejercicio5Decision();
-
             },
             'get'
         );
@@ -131,7 +142,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
                 $controlador->ejercicio1();
-
             },
             'get'
         );
@@ -149,7 +159,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
                 $controlador->ejercicio2();
-
             },
             'get'
         );
@@ -167,7 +176,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
                 $controlador->ejercicio8();
-
             },
             'get'
         );
@@ -185,7 +193,6 @@ class FrontController
             function () {
                 $controlador = new \Com\Daw2\Controllers\IterativasController();
                 $controlador->ejercicio9();
-
             },
             'get'
         );
@@ -198,128 +205,6 @@ class FrontController
             },
             'post'
         );
-        Route::add(
-            '/iterativas2',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->ejercicio2();
-
-            },
-            'get'
-        );
-
-        Route::add(
-            '/iterativas2',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->doEjercicio2();
-            },
-            'post'
-        );
-
-        Route::add(
-            '/iterativas3',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->ejercicio3();
-
-            },
-            'get'
-        );
-
-        Route::add(
-            '/iterativas3' ,
-            function () {
-                $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->doEjercicio3();
-            },
-            'post'
-        );
-
-        Route::add(
-            '/iterativas4',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->ejercicio4();
-
-            },
-            'get'
-        );
-
-        Route::add(
-            '/iterativas4' ,
-            function () {
-                $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->doEjercicio4();
-            },
-            'post'
-        );
-        Route::add(
-            '/iterativas8',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->ejercicio8();
-
-            },
-            'get'
-        );
-
-        Route::add(
-            '/iterativas8',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\IterativasController();
-                $controlador->doEjercicio8();
-            },
-            'post'
-        );
-
-        Route::add(
-            '/test-conection',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->testDB();
-
-            },
-            'get'
-        );
-
-        Route::add(
-            '/consultas1_1',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->ejercicio1();
-
-            },
-            'get'
-        );
-        Route::add(
-            '/consultas1_2',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->ejercicio2();
-
-            },
-            'get'
-        );
-        Route::add(
-            '/consultas1_3',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->ejercicio3();
-
-            },
-            'get'
-        );
-        Route::add(
-            '/consultas1_4',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\TrabajadorController();
-                $controlador->ejercicio4();
-
-            },
-            'get'
-        );
-
         Route::add(
             '/demo-proveedores',
             function () {
@@ -344,7 +229,6 @@ class FrontController
             },
             'get'
         );
-
         Route::add(
             '/trabajadores',
             function () {
@@ -353,7 +237,6 @@ class FrontController
             },
             'get'
         );
-
         Route::add(
             '/trabajadores/new',
             function () {
@@ -372,7 +255,7 @@ class FrontController
         );
         Route::add(
             '/trabajadores/edit/([\p{L}0-9_]{4,50})',
-            function ($username) {
+            function (string $username) {
                 $controlador = new \Com\Daw2\Controllers\TrabajadorController();
                 $controlador->edit($username);
             },
@@ -380,7 +263,7 @@ class FrontController
         );
         Route::add(
             '/trabajadores/edit/([\p{L}0-9_]{4,50})',
-            function ($username) {
+            function (string $username) {
                 $controlador = new \Com\Daw2\Controllers\TrabajadorController();
                 $controlador->doEdit($username);
             },
@@ -388,7 +271,7 @@ class FrontController
         );
         Route::add(
             '/trabajadores/delete/([\p{L}0-9_]{4,50})',
-            function ($username) {
+            function (string $username) {
                 $controlador = new \Com\Daw2\Controllers\TrabajadorController();
                 $controlador->delete($username);
             },
@@ -402,22 +285,6 @@ class FrontController
                 $controlador->index();
             },
             'get'
-        );
-        Route::add(
-            '/preferencias',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\PreferenciasController();
-                $controlador->showPreferencias();
-            },
-            'get'
-        );
-        Route::add(
-            '/preferencias',
-            function () {
-                $controlador = new \Com\Daw2\Controllers\PreferenciasController();
-                $controlador->doPreferencias();
-            },
-            'post'
         );
         Route::pathNotFound(
             function () {

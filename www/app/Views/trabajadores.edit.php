@@ -16,13 +16,16 @@ declare(strict_types=1);
                         <label for="username">Username:</label>
                         <input type="text" class="form-control"
                                name="username" id="username"
-                               value="<?php echo $input['username'] ?? ''; ?>"
+                               value="<?php
+                               echo $input['username'] ?? ''; ?>"
                                maxlength="50"
                                placeholder="MyUsername"
-                                <?php echo !empty($isEdit) ? 'readonly' : ''; ?>
+                               <?= $edicion ? 'readonly' : '' ?>
                         />
                         <p class="text-danger small">
-                            <?php echo $errors['username'] ?? ''; ?>
+                            <?php
+                            echo $errors['username'] ?? '';
+                            ?>
                         </p>
                     </div>
                 </div>
@@ -32,7 +35,7 @@ declare(strict_types=1);
                         <input type="text" class="form-control"
                                name="salarioBruto" id="salarioBruto"
                                value="<?php
-                               echo isset($input['salarioBruto']) ?? ""; ?>"
+                               echo $input['salarioBruto'] ?? ''; ?>"
                                maxlength="20"
                                placeholder="3456,60"
                         />
@@ -114,9 +117,7 @@ declare(strict_types=1);
             <div class="col-12 text-right">
                 <a href="/trabajadores" class="btn btn-danger">Cancelar</a>
                 <input type="submit" value="Guardar" class="btn btn-primary ml-2"/>
-                <?php if (empty($isEdit)): ?>
-                    <input type="submit" name="insertar_otro" value="Guardar e insertar otro" class="btn btn-primary ml-2"/>
-                <?php endif; ?>
+                <input type="submit" name="insertar_otro" value="Guardar e insertar otro" class="btn btn-primary ml-2"/>
             </div>
         </div>
     </form>

@@ -43,4 +43,9 @@ class UsuariosSistemaController extends BaseController
         $this->view->showViews(array('templates/header.view.php', 'usuarios-sistema.view.php', 'templates/footer.view.php'), $data);
     }
 
+    public function login(): void
+    {
+        $this->view->show('login.view.php');
+    }
+
 }
